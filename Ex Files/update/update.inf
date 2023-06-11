@@ -1,0 +1,3242 @@
+[Version]
+Signature                 = "$Windows NT$"
+LanguageType              = %LangTypeValue%
+NtBuildToUpdate           = 2195
+NtMajorVersionToUpdate    = 5
+NtMinorVersionToUpdate    = 0
+MaxNtBuildToUpdate        = 2195
+MaxNtMajorVersionToUpdate = 5
+MaxNtMinorVersionToUpdate = 0
+MinNtServicePackVersion   = 1024
+MaxNtServicePackVersion   = 1024
+ThisServicePackVersion    = 1280
+
+[Prerequisite]
+condition=AndOp,ScriptScrrun.AndOp.section
+condition=AndOp,ScriptJscript.AndOp.section
+condition=AndOp,ScriptVbscript.AndOp.section
+;condition=CompositeOp,OrOp,Test.OrOp.Section
+;condition=AndOp,Test.Exist.WM64.Section.l3codecx
+;condition=SingleOp,Test.UpperVersionCheck.WM64.Section.l3codecx
+;condition=AndOp,Test.Exist.WM9L.Section.wmvdmod
+;condition=SingleOp,Test.UpperVersionCheck.WM9L.Section.wmvdmod
+;condition=AndOp,Test.Exist.WM64.Section.wmv9vcm
+;condition=SingleOp,Test.UpperVersionCheck.WM64.Section.wmv9vcm
+condition=AndOp,Test.Exist.DX9.Section.quartz
+condition=AndOp,Test.Exist.DX9.Section.mpg2splt
+condition=AndOp,Test.UpperVersionCheck.DX9.Section.quartzANDmpg2splt
+
+[PreReq.MSI31.IsPresent]
+
+[ProductInstall.Conditional]
+
+[Register.Include]
+
+[DirectoryId.Include]
+AddDirId=ResKit.DirId
+AddDirId=Hyper.DirId
+AddDirId=IE.DirId
+AddDirId=Eudc.DirId
+AddDirId=Htr.DirId
+AddDirId=Cluster.DirId
+AddDirId=CMAK.DirId
+AddDirId=RISAdm.DirId
+AddDirId=SupportTools.DirId
+AddDirId=Proxy.DirId
+AddDirId=Admt.DirId
+AddDirId=Tsclient.DirId
+AddDirId=FPNW.DirId
+AddDirId=Mts.DirId
+AddDirId=Spool.Dirid
+AddDirId=PrintProcessor.Dirid
+AddDirId=DontRemoveOnUninst.DirId
+
+[ResKit.DirId]
+DirId = 66002
+InstallPathRegistryKey = HKLM,%ResKitPathKey%,InstallDir
+InstallFromSection=ResKitSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Hyper.DirId]
+DirId = 65605
+InstallPathRegistryKey = HKLM,%HyperRegKey%,
+InstallFromSection = HyperSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[RISAdm.DirId]
+DirId = 65625
+CustomFunction=SpCustom.dll,GetRISPathName
+InstallFromSection = RISAdminSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[IE.DirId]
+DirId = 65604
+InstallPathRegistryKey = HKLM,%IeRegKey%,Path
+InstallFromSection = IESection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Proxy.DirId]
+DirId = 65609
+InstallPathRegistryKey = HKLM,%ProxyRegKey%,InstallRoot
+InstallFromSection = ProxySection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Eudc.DirId]
+DirId = 65606
+InstallPathRegistryKey = HKLM,%EudcRegKey%,
+InstallFromSection = EudcSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Admt.DirId]
+DirId = 65622
+InstallPathRegistryKey = HKLM,%AdmtRegKey%,Directory
+InstallFromSection = AdmtSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Tsclient.DirId]
+DirId = 65624
+InstallPathRegistryKey = HKLM,%TsclientRegKey%,
+InstallFromSection = TsclientSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Htr.DirId]
+DirId = 65603
+CustomFunction=SpCustom.dll,GetHTRPathName
+InstallFromSection = HtrSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[FPNW.DirId]
+DirId = 65602
+CustomFunction=SpCustom.dll,GetFPNWPathName
+InstallFromSection = FPNWSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Cluster.DirId]
+DirId = 65607
+CustomFunction=SpCustom.dll,GetClusterPathName
+InstallFromSection = ClusterSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Mts.DirId]
+DirId = 65610
+CustomFunction=SpCustom.dll,GetMtsPathName
+InstallFromSection = MtsSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[CMAK.DirId]
+DirId = 65615
+InstallPathRegistryKey = HKLM,%CMAKRegKey%,Path
+InstallFromSection = CMAKSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[SupportTools.DirId]
+DirId = 65626
+CustomFunction=SpCustom.dll,GetSupportToolsPathName
+InstallFromSection = SupportToolsSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Spool.Dirid]
+DirId = 65690
+CustomFunction=SpCustom.dll,GetPrinterDriverPath
+InstallFromSection=SpoolSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[PrintProcessor.Dirid]
+DirId = 65691
+CustomFunction=SpCustom.dll,GetPrintProcessorPath
+InstallFromSection=PrintProcessorSection
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[MSI20.DirId]
+DirId = 65692
+CustomFunction=SpCustom.dll,GetMSI20Stage
+InstallFromSection = MSI20Install
+InstallStage = BeforeArchive
+CopyFlags = SP_COPY_FORCE_NEWER
+
+[DontRemoveOnUninst.DirId]
+InstallFromSection=DontRemoveOnUninstallSection
+InstallStage=BeforeArchive
+CopyFlags=SP_COPY_FORCE_NEWER
+
+[ProductCatalogsToInstall]
+mdac281-kb983838-jpn.cat
+kb982132.cat
+kb982665.cat
+kb2347290-v2.cat
+kb2476490.cat
+kb2483185.cat
+kb2491683.cat
+kb2506212.cat
+kb2508429.cat
+kb2524426.cat
+kb2535512.cat
+kb2536276-v2.cat
+kb2598479.cat
+kb2653956.cat
+kb2676562.cat
+kb2705219.cat
+kb2719985.cat
+kb2723135.cat
+kb2727528.cat
+kb2749655.cat
+kb2758857.cat
+kb2876217.cat
+kb2892075.cat
+kb2893294.cat
+kb2900986.cat
+kb2957509.cat
+kb2992611.cat
+kb2780091.cat
+kb3011780.cat
+kb3020393.cat
+kb3039066.cat
+kb3124624.cat
+kb3140735.cat
+kb3145739.cat
+kb3156013.cat
+kb2929961.cat
+KB2962872-IE6SP1-20140529.120000.cat
+kb975558.cat
+kb2115168.cat
+kb2803821-v2.cat
+kb2845142.cat
+
+
+[ProductInstall.ReplaceFilesIfExist]
+DelFiles=Drivercab.Delfiles
+DelFiles=ServicePackDeleteFiles
+CopyFiles=System32.Files
+CopyFiles=System.Files
+CopyFiles=SystemRoot.Files
+CopyFiles=Inf.Files
+CopyFiles=Fonts.Files
+CopyFiles=OLEDB.Files
+CopyFiles=Setup.Files
+CopyFiles=IAS.Files
+CopyFiles=WBEM.Files
+CopyFiles=Export.Files
+CopyFiles=Common.System.Files
+CopyFiles=Help.Files
+CopyFiles=Media.Files
+CopyFiles=MediaPlayer.Files
+CopyFiles=MSInfo.Files
+CopyFiles=DAO.Files
+CopyFiles=MSADC.Files
+CopyFiles=ADO.Files
+CopyFiles=OE.Files
+CopyFiles=Windows.NT
+CopyFiles=Kodak.Files
+CopyFiles=WSE.Bots.Files
+CopyFiles=WSE.ISAPI.Files
+CopyFiles=WSE.IAUT.Files
+CopyFiles=WSE.VTI.Files
+CopyFiles=WSE.AUT.Files
+CopyFiles=WSE.SCR.Files
+CopyFiles=WSE.ASCR.Files
+CopyFiles=WSE.VTIBIN.Files
+CopyFiles=WSE.IP.Files
+CopyFiles=WSE.VB.Files
+CopyFiles=FP.Files
+CopyFiles=WSE.Bin.Files
+CopyFiles=WSE.SRV.Files
+CopyFiles=WSE.Lang.Files
+CopyFiles=Media.Tools.Files
+CopyFiles=Certsrv.Files
+CopyFiles=Control.Files
+CopyFiles=Control.x86.Files
+CopyFiles=Control.alpha.Files
+CopyFiles=ConnWiz.Files
+CopyFiles=AppPatch.Files
+CopyFiles=Com.Files
+CopyFiles=SMTP.Files
+CopyFiles=WebPrinters.Files
+CopyFiles=Netmon.Files
+CopyFiles=Netmon.Parser.Files
+CopyFiles=RpcProxy.Files
+CopyFiles=DirSync10.Files
+CopyFiles=RIS.Reminst.Files
+CopyFiles=PhoneBook.Files
+CopyFiles=NetMeeting.Files
+CopyFiles=IMEJP.Files
+CopyFiles=IMEJPApplet.Files
+CopyFiles=Terminal.Service32.Files
+CopyFiles=TSClientDefault.Files
+CopyFiles=TS32Disk1.Install.Files
+CopyFiles=TS32Disk2.Install.Files
+CopyFiles=TS32Disk3.Install.Files
+CopyFiles=TS32Disk4.Install.Files
+CopyFiles=Web.Files
+CopyFiles=WebFolders.Files
+CopyFiles=MUI.files
+CopyFiles=USB2.Files
+CopyFiles=TextConv.Files
+DelFiles=System32.Delfiles
+DelFiles=WebPrinters.Delfiles
+CopyFiles=Triedit.Files
+CopyFiles=MSAgent.Files
+CopyFiles=NPP.Files
+CopyFiles=Terminal.Service16.files
+CopyFiles=TS16Disk1.Install.Files
+CopyFiles=TS16Disk2.Install.Files
+CopyFiles=TS16Disk3.Install.Files
+CopyFiles=TS16Disk4.Install.Files
+CopyFiles=VGX.files
+CopyFiles=Copy.dllcache.DX9
+CopyFiles=Copy.system32.DX9
+
+[Nec98Section]
+CopyFiles=NEC98.Drivers.Files
+
+[ProductInstall.DontDelayUntilReboot]
+;
+; These files must be replaced before rebooting, not delayed-until-reboot,
+; because they are loaded before the delay-until-reboot code is executed.
+;
+CopyFiles=MustReplace.System32.Files
+CopyFiles=MustReplace.IIS.Files
+CopyFiles=Osldr.Files
+CopyFiles=Drivers.Files
+
+[ProductInstall.CopyFilesAlways]
+CopyFiles=AutoUpdate.DllCache.Files
+CopyFiles=NEC98.Cache.Files
+CopyFiles=CopyAlways.Templates.Files
+CopyFiles=CopyAlways.SystemRoot.files
+CopyFiles=CopyAlways.System32.Files
+CopyFiles=CopyAlways.Drivers.Files
+CopyFiles=CopyAlways.Inf.Files
+CopyFiles=CopyAlways.DriverCab.Files
+CopyFiles=CopyAlways.OE.Files
+CopyFiles=CopyAlways.Help.Files
+CopyFiles=CopyAlways.Cache.Files
+CopyFiles=ResourceKit.Files
+CopyFiles=Startmenu.Files
+CopyFiles=CopyAlways.AppPatch.Files
+CopyFiles=AppPatch.Help.Files
+CopyFiles=CopyAlways.Certsrv.Files
+DelFiles=AppPatch.DelFiles
+CopyFiles=CopyAlways.IISNewHTRFiles
+CopyFiles=Cache.Files
+CopyFiles=CopyAlways.IE.DE.Files
+CopyFiles=Windows.NT.Accessories.Files
+
+[ProductInstall.CopyFilesAlways.Professional]
+CopyFiles=Professional.Cache.Files
+CopyFiles=CopyAlways.Prf.System32.Files
+CopyFiles=CopyAlways.Prf.Drivers.Files
+CopyFiles=CopyAlways.Prf.Inf.Files
+CopyFiles=CopyAlways.Prf.Setup.Files
+DelFiles=AutoUpdate.System32.DelFiles
+DelFiles=AutoUpdate.Root.DelFiles
+DelFiles=AutoUpdate.Inf.DelFiles
+DelFiles=AutoUpdate.Tasks.DelFiles
+CopyFiles=AutoUpdate.System32.Files
+CopyFiles=AutoUpdate.Help.Files
+CopyFiles=AutoUpdate.Adm.Files
+
+[ProductInstall.CopyFilesAlways.Server]
+CopyFiles=Server.Cache.Files
+CopyFiles=CopyAlways.Srv.System32.Files
+CopyFiles=CopyAlways.Srv.Drivers.Files
+CopyFiles=CopyAlways.Srv.WBEM.Files
+CopyFiles=CopyAlways.Srv.Help.Files
+CopyFiles=CopyAlways.Srv.Inf.Files
+DelFiles=AutoUpdate.System32.DelFiles
+DelFiles=AutoUpdate.Root.DelFiles
+DelFiles=AutoUpdate.Inf.DelFiles
+DelFiles=AutoUpdate.Tasks.DelFiles
+CopyFiles=AutoUpdate.System32.Files
+CopyFiles=AutoUpdate.Help.Files
+CopyFiles=AutoUpdate.Adm.Files
+
+[ProductInstall.CopyFilesAlways.Advanced]
+CopyFiles=Advanced.Cache.Files
+CopyFiles=CopyAlways.Adv.System32.Files
+CopyFiles=CopyAlways.Adv.Drivers.Files
+CopyFiles=CopyAlways.Adv.Inf.Files
+DelFiles=AutoUpdate.System32.DelFiles
+DelFiles=AutoUpdate.Root.DelFiles
+DelFiles=AutoUpdate.Inf.DelFiles
+DelFiles=AutoUpdate.Tasks.DelFiles
+CopyFiles=AutoUpdate.System32.Files
+CopyFiles=AutoUpdate.Help.Files
+CopyFiles=AutoUpdate.Adm.Files
+
+[ProductInstall.CopyFilesAlways.Datacenter]
+CopyFiles=Datacenter.Cache.Files
+CopyFiles=CopyAlways.Dtc.System32.Files
+CopyFiles=CopyAlways.Dtc.Drivers.Files
+CopyFiles=CopyAlways.Dtc.Inf.Files
+
+[ProductInstall.CopyFilesAlways.WindowsPowered]
+CopyFiles=WindowsPowered.Cache.Files
+CopyFiles=CopyAlways.Pwr.System32.Files
+CopyFiles=CopyAlways.Pwr.Drivers.Files
+CopyFiles=CopyAlways.Pwr.Inf.Files
+DelFiles=AutoUpdate.System32.DelFiles
+DelFiles=AutoUpdate.Root.DelFiles
+DelFiles=AutoUpdate.Inf.DelFiles
+DelFiles=AutoUpdate.Tasks.DelFiles
+CopyFiles=AutoUpdate.System32.Files
+CopyFiles=AutoUpdate.Help.Files
+CopyFiles=AutoUpdate.Adm.Files
+
+[ProductInstall.DataCenterFiles]
+CopyFiles=DataCenter.Inf.Files
+CopyFiles=DataCenter.Drivers.Files
+CopyFiles=DataCenter.Templates.Files
+
+[ProductInstall.WindowsPoweredFiles]
+CopyFiles=WindowsPowered.Help.Files
+CopyFiles=WindowsPowered.Inf.Files
+CopyFiles=WindowsPowered.Drivers.Files
+CopyFiles=WindowsPowered.Templates.Files
+AddReg = ResetAU.AddReg
+
+[ProductInstall.AdvancedFiles]
+
+CopyFiles=Advanced.Help.Files
+CopyFiles=Advanced.Inf.Files
+CopyFiles=Advanced.Drivers.Files
+CopyFiles=Advanced.Templates.Files
+AddReg = ResetAU.AddReg
+
+[ProductInstall.ServerFiles]
+CopyFiles=Server.Inf.Files
+CopyFiles=Server.Drivers.Files
+CopyFiles=Server.Templates.Files
+AddReg = ResetAU.AddReg
+
+[ProductInstall.ProfessionalFiles]
+CopyFiles=Professional.Inf.Files
+CopyFiles=Professional.Drivers.Files
+CopyFiles=Professional.Templates.Files
+DelReg=Product.Del.Reg.Professional
+AddReg=Product.Add.Reg.Professional,ResetAU.AddReg
+
+[ProductInstall.UniprocessorFiles]
+CopyFiles=Uniprocessor.Kernel.Files
+CopyFiles=UniProc.DriverCab.Files
+CopyFiles=UniProc.Cache.Files
+
+[ProductInstall.MultiprocessorFiles]
+CopyFiles=Multiprocessor.Kernel.Files
+CopyFiles=MultiProc.DriverCab.Files
+CopyFiles=MultiProc.Cache.Files
+
+[ProductInstall.GlobalRegistryChanges.Install]
+AddReg=Product.Add.Reg, Product.RunOnce
+DelReg=Product.Del.Reg
+
+[ProductInstall.GlobalRegistryChanges.ReInstall]
+AddReg=Product.Add.Reg, Product.RunOnce
+DelReg=Product.Del.Reg
+
+[ProductInstall.56BitFiles]
+CopyFiles=System32.56bit.Files
+CopyFiles=Drivers.56bit.Files
+CopyFiles=Cache.56bit.Files
+
+[ProductInstall.128BitFiles]
+CopyFiles=System32.128bit.Files
+CopyFiles=Drivers.128bit.Files
+CopyFiles=Cache.128bit.Files
+
+[MDAC.Install.Section]
+CopyFiles = MDAC.Files
+CopyFiles = MDAC.Cache.Files
+
+[ServicesToStopAndStart]
+
+[ProxySection]
+
+CopyFiles=Proxy.Files
+
+[IISSection]
+CopyFiles=IIS.Files
+CopyFiles=IISAdmin.Files
+CopyFiles=IISASPHelp.Files
+CopyFiles=IISDocSearch.Files
+CopyFiles=IISHTR.Files
+AddReg=IIS.AddReg
+
+[IISSectionDataCenter]
+CopyFiles=DataCenter.IIS.Inf.Files
+AddReg=DataCenter.IIS.AddReg
+
+[IISSectionWindowsPowered]
+CopyFiles=WindowsPowered.IIS.Inf.Files
+AddReg=WindowsPowered.IIS.AddReg
+
+[IISSectionAdvanced]
+CopyFiles=Advanced.IIS.Inf.Files
+AddReg=Advanced.IIS.AddReg
+
+[IISSectionServer]
+CopyFiles=Server.IIS.Inf.Files
+AddReg=Server.IIS.AddReg
+
+[IISSectionProfessional]
+CopyFiles=Professional.IIS.Inf.Files
+AddReg=Professional.IIS.AddReg
+
+[FPNWSection]
+CopyFiles=FPNW.Files
+
+[NWPROVAUSection]
+AddReg=NWPROVAU.AddReg
+DelReg=NWPROVAU.DelReg
+
+[HTRSection]
+CopyFiles=HTR.Files
+
+[MtsSection]
+CopyFiles=Mts.Files
+
+[IESection]
+CopyFiles=IE.Files
+
+[SpoolSection]
+CopyFiles=Spldrv.files
+CopyFiles=Spldrv.files.NT40
+
+[PrintProcessorSection]
+CopyFiles=PrintProcessor.Files
+
+[AdmtSection]
+CopyFiles=Admt.Files
+
+[ResKitSection]
+CopyFiles=ResKit.Files
+
+[HyperSection]
+CopyFiles=Hyper.Files
+
+[EudcSection]
+CopyFiles=Eudc.Files
+
+[ClusterSection]
+CopyFiles=Cluster.Files
+
+[SupportToolsSection]
+CopyFiles=SupportTools.Files
+
+[RISAdminSection]
+CopyFiles=RIS.Admin.Files
+CopyFiles=RIS.OSChooser.Files
+
+[CMAKSection]
+CopyFiles=CMAK.Files
+CopyFiles=CMAK.Support.Files
+
+[TsClientSection]
+CopyFiles=TSClient.Files
+
+[ProcessesToRun]
+
+[ProcessesToRunBeforeUninstall]
+
+[ProcessesToRunAfterUninstall]
+
+[ProcessesToRunBeforeArchive]
+
+[ProcessesToRunAfterReboot]
+
+[ProcessesToRunAfterUninstallReboot]
+
+[DirectoriesToCleanUp]
+
+[Save.Reg.For.Uninstall]
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%
+HKLM,SOFTWARE\Microsoft\Updates\Windows 2000\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon","BufferPolicyReads"
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList"
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList"
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList"
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList"
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f22-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1b-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1c-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1d-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1e-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f21-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1f-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f20-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f28-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f29-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f26-c551-11d3-89b9-0000f81fe221}
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility
+HKLM,SOFTWARE\Microsoft\Updates\%SourceDiskName%\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\IEUpdate
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VGXUpdate
+HKLM,SOFTWARE\Microsoft\Internet Explorer\Application Compatibility
+HKLM,%PATH_DRAGPROTOCOLS%
+HKLM,%PATH_ALLOWEDIMGEXTS%
+HKLM,%PATH_TEMPOL_HI%
+HKLM,%PATH_ZONES_LOCAL% 
+HKLM,%PATH_ZONES_INTRANET%
+HKLM,%PATH_ZONES_TRUSTED%
+HKLM,%PATH_ZONES_INTERNET%
+HKLM,%PATH_ZONES_UNTRUSTED%
+HKCU,%PATH_ZONES_LOCAL% 
+HKCU,%PATH_ZONES_INTRANET%
+HKCU,%PATH_ZONES_TRUSTED%
+HKCU,%PATH_ZONES_INTERNET%
+HKCU,%PATH_ZONES_UNTRUSTED%
+HKLM,SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_IMAGING_USE_ART
+HKLM,SOFTWARE\Policies\Microsoft\windows\System,"HelpQualifiedRootDir"
+HKCR,CLSID\{4B106874-DD36-11D0-8B44-00A024DD9EFF}
+HKLM,Software\Microsoft\Active Setup\Installed Components\%GUID%
+HKCR,CLSID\%CLSID_ShellWindows%
+
+;
+; MDAC 2.8 SP1
+;
+HKLM,SOFTWARE\Microsoft\DataAccess,"FullInstallVer"
+HKLM,SOFTWARE\Microsoft\DataAccess,"PatchLevel"
+
+[Product.Del.Reg]
+HKLM,"%PATH_DRAGPROTOCOLS%\1","*",0x10001,0x0  ; allow all to be dragged from Intranet
+HKLM,SOFTWARE\Policies\Microsoft\windows\System,"HelpQualifiedRootDir"
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\IEUpdate
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VGXUpdate
+HKCR,CLSID\{4B106874-DD36-11D0-8B44-00A024DD9EFF}
+
+[Product.Add.Reg]
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Installed",0x10001,1
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Comments",0,%SP_TITLE%
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Backup Dir",0,""
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Fix Description",0,%SP_TITLE%
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Installed By",0,""
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Installed On",0,""
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Service Pack",0x10001,%SERVICE_PACK_NUMBER%
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%,"Valid",0x10001,1
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%\File 1\,"Flags",0,""
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%\File 1\,"New File",0,""
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%\File 1\,"New Link Date",0,""
+HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%\File 1\,"Old Link Date",0,""
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%,"ReleaseType",0,Hotfix
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%,"RegistryLocation",0,"HKLM\SOFTWARE\Microsoft\Updates\Windows 2000\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%"
+HKLM,SOFTWARE\Microsoft\Updates\Windows 2000\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%,"Description",,%SP_TITLE%
+;   Plugin.ocx
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%","DisplayIcon",0x00020000, "%windir%\System32\msiexec.exe"
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon","BufferPolicyReads",0x10001,1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|874","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|932","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|936","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|949","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|950","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1250","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1251","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1252","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1253","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1254","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1255","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1256","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1257","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1258","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|874","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|932","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|936","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|949","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|950","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1250","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1251","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1252","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1253","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1254","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1255","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1256","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1257","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1258","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|874","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|932","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|936","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|949","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|950","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1250","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1251","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1252","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1253","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1254","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1255","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1256","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1257","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1258","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|874","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|932","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|936","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|949","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|950","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1250","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1251","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1252","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1253","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1254","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1255","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1256","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1257","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,"SYSTEM\CurrentControlSet\Control\RtlQueryRegistryConfig\TrustedTypesKeyList\USR|EUDC|1258","SystemDefaultEUDCFont",0x00010001,0x1
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f22-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1b-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1c-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1d-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1e-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f21-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1f-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f20-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f28-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f29-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f26-c551-11d3-89b9-0000f81fe221},"Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{22FD7C0A-850C-4A53-9821-0B0915C96139}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{314111B8-A502-11D2-BBCA-00C04F8EC294}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{314111C6-A502-11D2-BBCA-00C04F8EC294}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5F810AFC-BB5F-4416-BE63-E01DD117BD6C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3BEE4890-4FE9-4A37-8C1E-5E7E12791C1F}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{40F23EB7-B397-4285-8F3C-AACE4FA40309}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{47206204-5ECA-11D2-960F-00C04F8EE628}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00D46195-B634-4C41-B53B-5093527FB791}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0270E604-387F-48ED-BB6D-AA51F51D6FC3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{038F6F55-C9F0-4601-8740-98EF1CA9DF9A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{05CDEE1D-D109-4992-B72B-6D4F5E2AB731}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0B9C0C26-728C-4FDA-B8DD-59806E20E4D9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0C378864-D5C4-4D9C-854C-432E3BEC9CCB}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{101D2283-EED9-4BA2-8F3F-23DB860946EB}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{108092BF-B7DB-40D1-B7FB-F55922FCC9BE}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{14C1B87C-3342-445F-9B5E-365FF330A3AC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{17E67D4A-23A1-40D8-A049-EE34C0AF756A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1E0D3332-7441-44FF-A225-AF48E977D8B6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{285CAE3C-F16A-4A84-9A80-FF23D6E56D68}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2875E7A5-EE3C-4FE7-A23E-DE0529D12028}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2C2DE2E6-2AD1-4301-A6A7-DF364858EF01}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3604EC19-E009-4DCB-ABC5-BB95BF92FD8B}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3D6A1A85-DE54-4768-9951-053B3B02B9B0}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{41473CFB-66B6-45B8-8FB3-2BC9C1FD87BA}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{42C68651-1700-4750-A81F-A1F5110E0F66}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{44A6A9CA-AC5B-4C39-8FE6-17E7D06903A9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4614C49A-0B7D-4E0D-A877-38CCCFE7D589}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4774922A-8983-4ECC-94FD-7235F06F53A1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{47AF06DD-8E1B-4CA4-8F55-6B1E9FF36ACB}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{497EE41C-CE06-4DD4-8308-6C730713C646}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5C6698D9-7BE4-4122-8EC5-291D84DBD4A0}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{60178279-6D62-43AF-A336-77925651A4C6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6470DE80-1635-4B5D-93A3-3701CE148A79}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{652623DC-2BB4-4C1C-ADFB-57A218F1A5EE}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{65FB3073-CA8E-42A1-9A9A-2F826D05A843}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{66E07EF9-4E89-4284-9632-6D6904B77732}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{68BBCA71-E1F6-47B2-87D3-369E1349D990}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{692898BE-C7CC-4CB3-A45C-66508B7E2C33}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6981B978-70D9-40B9-B00E-903B6FC8CA8A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{69C462E1-CD41-49E3-9EC2-D305155718C1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6C095616-6064-43CA-9180-CF1B6B6A0BE4}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6CA73E8B-B584-4533-A405-3D6F9C012B56}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6E5E167B-1566-4316-B27F-0DDAB3484CF7}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{73BCFD0F-0DAA-4B21-B709-2A8D9D9C692A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{76EE578D-314B-4755-8365-6E1722C001A2}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{784F2933-6BDD-4E5F-B1BA-A8D99B603649}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7A12547F-B772-4F2D-BE36-CE5D0FA886A1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7EB2A2EC-1C3A-4946-9614-86D3A10EDBF3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{833E62AD-1655-499F-908E-62DCA1EB2EC6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{86C2B477-5382-4A09-8CA3-E63B1158A377}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8C7A23D9-2A9B-4AEA-BA91-3003A316B44D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8CC18E3F-4E2B-4D27-840E-CB2F99A3A003}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8DBC7A04-B478-41D5-BE05-5545D565B59C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{905BF7D7-6BC1-445A-BE53-9478AC096BEB}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{910E7ADE-7F75-402D-A4A6-BB1A82362FCA}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{916063A5-0098-4FB7-8717-1B2C62DD4E45}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{926618A9-4035-4CD6-8240-64C58EB37B07}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9275A865-754B-4EDF-B828-FED0F8D344FC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{93441C07-E57E-4086-B912-F323D741A9D8}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{93C5524B-97AE-491E-8EB7-2A3AD964F926}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{947F2947-2296-42FE-92E6-E2E03519B895}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{974E1D88-BADF-4C80-8594-A59039C992EA}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{977315A5-C0DB-4EFD-89C2-10AA86CA39A5}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9BAFC7B3-F318-4BD4-BABB-6E403272615A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A233E654-53FF-43AA-B1E2-60DA2E89A1EC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A3796166-A03C-418A-AF3A-060115D4E478}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A73BAEFA-EE65-494D-BEDB-DD3E5A34FA98}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A7866636-ED52-4722-82A9-6BAABEFDBF96}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A95845D8-8463-4605-B5FB-4F8CFBAC5C47}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AA13BD85-7EC0-4CC8-9958-1BB2AA32FD0B}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AB049B11-607B-46C8-BBF7-F4D6AF301046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AB237044-8A3B-42BB-9EE1-9BFA6721D9ED}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AE2B937E-EA7D-4A8D-888C-B68D7F72A3C4}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AE6C4705-0F11-4ACB-BDD4-37F138BEF289}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B0A08D67-9464-4E73-A549-2CC208AC60D3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B26E6120-DD35-4BEA-B1E3-E75F546EBF2A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B60770C2-0390-41A8-A8DE-61889888D840}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B85537E9-2D9C-400A-BC92-B04F4D9FF17D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B95B52E9-B839-4412-96EB-4DABAB2E4E24}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B9C13CD0-5A97-4C6B-8A50-7638020E2462}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BA162249-F2C5-4851-8ADC-FC58CB424243}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BF931895-AF82-467A-8819-917C6EE2D1F3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C70D0641-DDE1-4FD7-A4D4-DA187B80741D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C86EE68A-9C77-4441-BD35-14CC6CC4A189}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C94188F6-0F9F-46B3-8B78-D71907BD8B77}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CB05A177-1069-4A7A-AB0A-5E6E00DCDB76}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CC7DA087-B7F4-4829-B038-DA01DFB5D879}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CDAF9CEC-F3EC-4B22-ABA3-9726713560F8}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CF08D263-B832-42DB-8950-F40C9E672E27}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CF6866F9-B67C-4B24-9957-F91E91E788DC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D986FE4B-AE67-43C8-9A89-EADDEA3EC6B6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DC4F9DA0-DB05-4BB0-8FB2-03A80FE98772}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DE233AFF-8BD5-457E-B7F0-702DBEA5A828}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E12DA4F2-BDFB-4EAD-B12F-2725251FA6B0}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E1A26BBF-26C0-401D-B82B-5C4CC67457E0}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E4C97925-C194-4551-8831-EABBD0280885}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E6127E3B-8D17-4BEA-A039-8BB9D0D105A2}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F1F51698-7B63-4394-8743-1F4CF1853DE1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F399F5B6-3C63-4674-B0FF-E94328B1947D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F6A7FF1B-9951-4CBE-B197-EA554D6DF40D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F89EF74A-956B-4BD3-A066-4F23DF891982}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FA8932FF-E064-4378-901C-69CB94E3A20A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FC28B75F-F9F6-4C92-AF91-14A3A51C49FB}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E500-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E510-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E511-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E520-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E530-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AED98630-0251-4E83-917D-43A23D66D507}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F0E42D50-368C-11D0-AD81-00A0C90DC8D9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F0E42D60-368C-11D0-AD81-00A0C90DC8D9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F2175210-368C-11D0-AD81-00A0C90DC8D9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{67A5F8DC-1A4B-4D66-9F24-A704AD929EEE}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E48BB416-C578-4A62-84C9-5E3389ABE5FC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FA91DF8D-53AB-455D-AB20-F2F023E498D3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0ECD9B64-23AA-11D0-B351-00A0C9055D8E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1E216240-1B7D-11CF-9D53-00AA003C9CB6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{248DD896-BB45-11CF-9ABC-0080C7E7B78D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3A2B370C-BA0A-11D1-B137-0000F8753F5D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4788DE08-3552-49EA-AC8C-233DA52523B9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6262D3A0-531B-11CF-91F6-C2863C385E30}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B09DE715-87C1-11D1-8BE3-0000F8754DA1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C932BA85-4374-101B-A56C-00AA003668DC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CDE57A43-8B86-11D0-B3C6-00A0C90AEA82}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FFBB3F3B-0A5A-4106-BE53-DFE1E2340CB1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00000032-9593-4264-8B29-930B3E4EDCCD}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4C39376E-FA9D-4349-BACC-D305C1750EF3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{648A5600-2C6E-101B-82B6-000000000014}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C3EB1670-84E0-4EDA-B570-0B51AAE81679}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D8089245-3211-40F6-819B-9E5E92CD61A2}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{011B3619-FE63-4814-8A84-15A194CE9CE3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0149EEDF-D08F-4142-8D73-D23903D21E90}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0369B4E5-45B6-11D3-B650-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0369B4E6-45B6-11D3-B650-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{055CB2D7-2969-45CD-914B-76890722F112}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0955AC62-BF2E-4CBA-A2B9-A63F772D46CF}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{15D6504A-5494-499C-886C-973C9E53B9F1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1BE49F30-0E1B-11D3-9D8E-00C04F72D980}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1C15D484-911D-11D2-B632-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1DF7D126-4050-47F0-A7CF-4C4CA9241333}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2C63E4EB-4CEA-41B8-919C-E947EA19A77C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{334125C0-77E5-11D3-B653-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{37B0353C-A4C8-11D2-B634-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{37B03543-A4C8-11D2-B634-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{37B03544-A4C8-11D2-B634-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{418008F3-CF67-4668-9628-10DC52BE1D08}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4A5869CF-929D-4040-AE03-FCAFC5B9CD42}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{577FAA18-4518-445E-8F70-1473F8CF4BA4}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{59DC47A8-116C-11D3-9D8E-00C04F72D980}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7F9CB14D-48E4-43B6-9346-1AEBC39C64D3}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{823535A0-0318-11D3-9D8E-00C04F72D980}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8872FF1B-98FA-4D7A-8D93-C9F1055F85BB}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8A674B4C-1F63-11D3-B64C-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8A674B4D-1F63-11D3-B64C-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9CD64701-BDF3-4D14-8E03-F12983D86664}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9E77AAC4-35E5-42A1-BDC2-8F3FF399847C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A1A2B1C4-0E3A-11D3-9D8E-00C04F72D980}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A2E3074E-6C3D-11D3-B653-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A2E30750-6C3D-11D3-B653-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A8DCF3D5-0780-4EF4-8A83-2CFFAACB8ACE}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AD8E510D-217F-409B-8076-29C5E73B98E8}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B0EDF163-910A-11D2-B632-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B64016F3-C9A2-4066-96F0-BD9563314726}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BB530C63-D9DF-4B49-9439-63453962E598}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C531D9FD-9685-4028-8B68-6E1232079F1E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C5702CCC-9B79-11D3-B654-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C5702CCD-9B79-11D3-B654-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C5702CCE-9B79-11D3-B654-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C5702CCF-9B79-11D3-B654-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C5702CD0-9B79-11D3-B654-00C04F79498E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C6B14B32-76AA-4A86-A7AC-5C79AAF58DA7}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CAAFDD83-CEFC-4E3D-BA03-175F17A24F91}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D02AAC50-027E-11D3-9D8E-00C04F72D980}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F9769A06-7ACA-4E39-9CFB-97BB35F0E77E}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FA7C375B-66A7-4280-879D-FD459C84BB02}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E531-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E532-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E554-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002E55C-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{15721A53-8448-4731-8BFC-ED11E128E444}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{279D6C9A-652E-4833-BEFC-312CA8887857}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{27A3D328-D206-4106-8D33-1AA39B13394B}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3267123E-530D-4E73-9DA7-79F01D86A89F}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4C85388F-1500-11D1-A0DF-00C04FC9E20F}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4F1E5B1A-2A80-42CA-8532-2D05CB959537}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A9A7297E-969C-43F1-A1EF-51EBEA36F850}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B1F78FEF-3DB7-4C56-AF2B-5DCCC7C42331}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C832BE8F-4B89-4579-A217-DB92E7A27915}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DB640C86-731C-484A-AAAF-750656C9187D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DD8C2179-1B4A-4951-B432-5DE3D1507142}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0CCA191D-13A6-4E29-B746-314DEE697D83}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2D8ED06D-3C30-438B-96AE-4D110FDC1FB8}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{41861299-EAB2-4DCC-986C-802AE12AC499}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5D80A6D1-B500-47DA-82B8-EB9875F85B4D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C05A1FBC-1413-11D1-B05F-00805F4945F6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E0ECA9C3-D669-4EF4-8231-00724ED9288F}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{14FD1463-1F3F-4357-9C03-2080B442F503}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{56393399-041A-4650-94C7-13DFCB1F4665}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8FE85D00-4647-40B9-87E4-5EB8A52F4759}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E9CB13DB-20AB-43C5-B283-977C58FB5754}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F6A56D95-A3A3-11D2-AC26-400000058481}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6F750200-1362-4815-A476-88533DE61D0C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6F750201-1362-4815-A476-88533DE61D0C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7F14A9EE-6989-11D5-8152-00C04F191FCA}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2745E5F5-D234-11D0-847A-00C04FD7BB08}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{29851043-AA76-4EFD-9232-4914DD0AD4A1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2C37C480-CEE3-11D1-82C3-0060089253D0}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4918D1BD-B497-4F2F-A429-3C3CD74694FE}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4F496A52-13F7-483D-B5E2-0FC4AA567749}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{53655704-5956-11D3-91AA-005004B34F28}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{687F154E-1099-11D4-91F9-005004B34F28}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6F225D94-9318-11D4-9223-005004B34F28}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7B297BFD-85E4-4092-B2AF-16A91B2EA103}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{83F0C8F0-4900-4909-A0AD-A5BAAC432739}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8469A9DE-A3BF-4218-A1D2-F19AA9EA1617}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AC146530-87A5-11D1-ADBD-00AA00B8E05A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B3F90F4F-B521-4C76-BE28-DB569320CB8F}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C679DECC-5289-4856-B504-74B11ADD424A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CAFEEFAC-DEC7-0000-0000-ABCDEFFEDCBA}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FA44198C-E0B3-4F10-8B77-F646EC7CE684}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FB7199AB-79BF-11D2-8D94-0000F875C541}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FF371BF4-213D-11D0-95F3-00C04FD9B15B}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1A6FE369-F28C-4AD9-A3E6-2BCB50807CF1}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B4CB50E4-0309-4906-86EA-10B6641C8392}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E4F874A0-56ED-11D0-9C43-00A0C90F29FC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FB7FE605-A832-11D1-88A8-0000E8D220A6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{33FDA1EA-80DF-11D2-B263-00A0C90D6111}","Compatibility Flags",0x00010001,0x04000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3EEEBC9A-580F-46EF-81D9-55510266413D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{466576F3-19B6-4FF1-BD48-3E0E1BFB96E9}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{476C391C-3E0D-11D2-B948-00C04FA32195}","Compatibility Flags",0x00010001,0x04000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5622772D-6C27-11D3-95E5-006008D14F3B}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6286EF1A-B56E-48EF-90C3-743410657F3C}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4BA9089C-DDFC-4206-B937-74484B06D305}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{57733FF6-E100-4A4B-A7D1-A85AD17ABC54}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6E84D662-9599-11D2-9367-20CC03C10627}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7A7B986C-31E9-4286-88CA-B9DC481CA989}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7E00A3B0-8F5C-11D2-BAA4-04F205C10000}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8290CB76-9F61-458B-AD2C-3F6FD2E8CD7D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9B8E377B-7291-491A-B611-BB3E1D5F99F0}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A3CD4BF9-EC17-47A4-833C-50A324D6FF35}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B34B19F4-7EBE-46CB-807C-746E72EBB4B6}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DD7B057D-9020-4630-BAF8-7A0CDA04588D}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{EE5E14B0-4ABF-409E-9C39-74F3D35BD85A}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FC7F9CC6-E049-4698-8A25-59AD87C7DCE2}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B8E73359-3422-4384-8D27-4EA1B4C01232}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B8E73359-3422-4384-8D27-4EA1B4C01232}","AlternateCLSID",0x00000002,"{C861B75F-EE32-4AA4-B610-281AF26A8D1C}"
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{55963676-2F5E-4BAF-AC28-CF26AA587566}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{705EC6D4-B138-4079-A307-EF13E4889A82}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CC679CB8-DC4B-458B-B817-D447B3B6AC31}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E34F52FE-7769-46CE-8F8B-5E8ABAD2E9FC}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F8FC1530-0608-11DF-2008-0800200C9A66}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0D080D7D-28D2-4F86-BFA1-D582E5CE4867}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{29E9B436-DFAC-42F9-B209-BD37BAFE9317}","Compatibility Flags",0x00010001,0x00000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{19916E01-B44E-4E31-94A4-4696DF46157B}","Compatibility Flags",0x00010001,0x04000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{53001F3A-F5E1-4B90-9C9F-00E09B53C5F1}","Compatibility Flags",0x00010001,0x04000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C2C4F00A-720E-4389-AEB9-E9C4B0D93C6F}","Compatibility Flags",0x00010001,0x04000400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility", "Version",,6.01
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{167701E3-FDCF-11D0-A48E-006097C549FF}","Compatibility Flags",0x00010001,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{3050f4d8-98b5-11cf-BB82-00AA00BDCE0B}","Compatibility Flags",0x00010001,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{913C89C0-492C-11D4-911A-009027370674}","Compatibility Flags",0x00010001,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{73822330-B759-11D0-9E3D-00A0C911C819}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{69DEAF94-AF66-11D3-BEC0-00105AA9B6AE}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4B106874-DD36-11D0-8B44-00A024DD9EFF}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D32C3BAD-5213-49BD-A7D5-E6DE6C0D8249}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{009541A0-3B81-101C-92F3-040224009C02}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{06A7EC63-4E21-11D0-A112-00A0C90543AA}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{130D7743-5F5A-11D1-B676-00A0C9697233}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{16E349E0-702C-11CF-A3A9-00A0C9034920}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2BD0D2F2-52EC-11D1-8C69-0E16BC000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3B7C8860-D78F-101B-B9B5-04021C009402}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{43F8F289-7A20-11D0-8F06-00C04FC295E1}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{50E5E3D1-C07E-11D0-B9FD-00A0249F6B00}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6D940280-9F11-11CE-83FD-02608C3EC08A}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6D940285-9F11-11CE-83FD-02608C3EC08A}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{78A9B22E-E0F4-11D0-B5DA-00C0F00AD7F8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{84926CA0-2941-101C-816F-0E6013114B7F}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B75FEF72-0C54-11D2-B14E-00C04FB9358B}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D306C3B7-2AD5-11D1-9E9A-00805F200005}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E1A6B8A0-3603-101C-AC6E-040224009C02}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F72A7B0E-0DD8-11D1-BD6E-00AA00B92AF1}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FE9E48A4-A014-11D1-855C-00A0C944138C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AE1C01E3-0283-11d3-9B3F-00C04F8EF466}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D4A97620-8E8F-11CF-93CD-00AA00C08FDF}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FF2BBC4A-6881-4294-BE0C-17535B1FCCFA}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{72770C4F-967D-4517-982B-92D6B9015649}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0519F3C1-0ED3-4ef1-98F5-CC3FB10218C7}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{05E6787D-82D9-4d24-91DD-97FE8D199501}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{13FA0C3E-6B1C-4d8b-88CD-6DA8E1CA7653}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C3DFA998-A486-11d4-AA25-00C04F72DAEB}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F107317A-A488-11d4-AA25-00C04F72DAEB}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F5BE8BD2-7DE6-11D0-91FE-00C04FD701A5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DE4735F3-7532-4895-93DC-9A10C4257173}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{03D9F3F2-B0E3-11D2-B081-006008039BF0}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{18ab439e-fcf4-40d4-90da-f79baa3b0655}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{31087270-d348-432c-899e-2d2f38ff29a0}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{52ca3bcf-3b9b-419e-a3d6-5d28c0b0b50c}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{d2923b86-15f1-46ff-a19a-de825f919576}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{860bb310-5d01-11d0-bd3b-00a0c911ce86}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{e0f158e1-cb04-11d0-bd4e-00a0c911ce86}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{fd78d554-4c6e-11d0-970d-00a0c9191601}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{01E04581-4EEE-11d0-BFE9-00AA005B4383}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AF604EFE-8897-11D1-B944-00A0C90312E1}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7849596a-48ea-486e-8937-a2a3009f31a9}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{fbeb8a05-beee-4442-804e-409d6c4515e9}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3050F391-98B5-11CF-BB82-00AA00BDCE0B}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8ee42293-c315-11d0-8d6f-00a0c9a06e1f}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{33d9a761-90c8-11d0-bd43-00a0c911ce86}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4efe2452-168a-11d1-bc76-00c04fb9453b}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{33d9a760-90c8-11d0-bd43-00a0c911ce86}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{33D9A762-90C8-11d0-BD43-00A0C911CE86}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{083863F1-70DE-11d0-BD40-00A0C911CE86}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2a6eb050-7f1c-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{510a4910-7f1c-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6d36ce10-7f1c-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{860d28d0-8bf4-11ce-be59-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9478f640-7f1c-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{b0516ff0-7f1c-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{d99f7670-7f1a-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{eeed4c20-7f1b-11ce-be57-00aa0051fe20}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{c7b6c04a-cbb5-11d0-bb4c-00c04fc2f410}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{85bbd920-42a0-1069-a2e4-08002b30309d}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{e846f0a0-d367-11d1-8286-00a0c9231c29}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{b4b3aecb-dfd6-11d1-9daa-00805f85cfe3}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ecabb0bf-7f19-11d2-978e-0000f8757e2a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{466d66fa-9616-11d2-9342-0000f875ae17}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{67dcc487-aa48-11d1-8f4f-00c04fb611c7}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00022613-0000-0000-c000-000000000046}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{d2d588b5-d081-11d0-99e0-00c04fc2f8ec}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5d08b586-343a-11d0-ad46-00c04fd8fdff}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{cc7bfb42-f175-11d1-a392-00e0291f3959}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{cc7bfb43-f175-11d1-a392-00e0291f3959}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3f8a6c33-e0fd-11d0-8a8c-00a0c90c2bc5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ec444cb6-3e7e-4865-b1c3-0de72ef39b3f}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6cbe0382-a879-4d2a-8ec3-1f2a43611ba8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4faab301-cef6-477c-9f58-f601039e9b78}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7057e952-bd1b-11d1-8919-00c04fc2c836}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7007ACCF-3202-11D1-AAD2-00805FC1270E}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6E227101-F799-11CF-9227-00AA00A1EB95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6B7F1602-D44C-11d0-A7D9-AE3D17000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4622AD11-FF23-11d0-8D34-00A0C90F2719}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{283807B8-2C60-11D0-A31D-00AA00B92C03}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{208DD6A3-E12B-4755-9607-2E39EF84CFC5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1AA06BA1-0E88-11d1-8391-00C04FBD7C09}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CE292861-FC88-11D0-9E69-00C04FD7C15B}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D24D4453-1F01-11d1-8E63-006097D2DF48}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ABBA001B-3075-11D6-88A4-00B0D0200F88}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F27CE930-4CA3-11D1-AFF2-006097C9A284}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F117831B-C052-11d1-B1C0-00C04FC2F3EF}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f28d867a-ddb1-11d3-b8e8-00a0c981aeeb}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4CFB5280-800B-4367-848F-5A13EBF27F1D}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B3E0E785-BD78-4366-9560-B7DABE2723BE}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0006f02a-0000-0000-c000-000000000046}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{bc5f1e51-5110-11d1-aff5-006097c9a284}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00020420-0000-0000-c000-000000000046}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00020424-0000-0000-c000-000000000046}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{35cec8a3-2be6-11d2-8773-92e220524153}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3bc4f3a7-652a-11d1-b4d4-00c04fc2db8d}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{598eba02-b49a-11d2-a1c1-00609778ea66}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7007acc7-3202-11d1-aad2-00805fc1270e}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{730f6cdc-2c86-11d2-8773-92e220524153}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8e26bfc1-afd6-11cf-bffc-00aa003cfdfc}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8fe7e181-bb96-11d2-a1cb-00609778ea66}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{992cffa0-f557-101a-88ec-00dd010ccc48}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{03cb9467-fd9d-42a8-82f9-8615b4223e6e}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{250770f3-6af2-11cf-a915-008029e31fcd}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2c10a98f-d64f-43b4-bed6-dd0e1bf2074c}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3050f667-98b5-11cf-bb82-00aa00bdce0b}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{47c6c527-6204-4f91-849d-66e234dee015}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6f9f3481-84dd-4b14-b09c-6b4288eccde8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{98cb4060-d3e7-42a1-8d65-949d34ebfe14}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ecabafc2-7f19-11d2-978e-0000f8757e2a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00000566-0000-0010-8000-00AA006D2EA4}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{288F1523-FAC4-11CE-B16F-00AA0060D93D}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3050f4f5-98b5-11cf-bb82-00aa00bdce0b}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{de011590-0531-4804-9c9c-3fedc7e6e5c8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{e4979309-7a32-495e-8a92-7b014aad4961}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2d2e24cb-0cd5-458f-86ea-3e6fa22c8e64}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{51b4abf3-748f-4e3b-a276-c828330e926a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00021401-0000-0000-c000-000000000046}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{62ec9f22-5e30-11d2-97a1-00c04fb6dd9a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e2270fb-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e227109-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e22710a-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e22710b-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e22710c-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e22710d-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e22710e-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6e22710f-f799-11cf-9227-00aa00a1eb95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{b1d4ed44-ee64-11d0-97e6-00c04fc30b4a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{d675e22b-cae9-11d2-af7b-00c04f99179f}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ecabafc0-7f19-11d2-978e-0000f8757e2a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ecabb0ab-7f19-11d2-978e-0000f8757e2a}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4EA7C4C5-C5C0-4F5C-A008-8293505F71CC}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7965A6FD-B383-4658-A8E0-C78DCF2D0E63}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9A60A782-282B-4D69-9B2A-0945D588A125}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{80e8743e-8ac5-46f1-96a0-59fa30740C51}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0006F071-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0002000D-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00020421-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00020422-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00020423-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{00020425-0000-0000-C000-000000000046}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DF0B3D60-548F-101B-8E65-08002B2BD119}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{42B07B28-2280-4937-B035-0293FB812781}","Compatibility Flags",0x00010001,0x400 
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{542FB453-5003-11CF-92A2-00AA00B8A733}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4CECCEB2-8359-11D0-A34E-00AA00BDCDFD}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4CECCEB1-8359-11D0-A34E-00AA00BDCDFD}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1F7DD4F2-CAC3-11D0-A35B-00AA00BDCDFD}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1F7DD4F3-CAC3-11D0-A35B-00AA00BDCDFD}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B0406342-B0C5-11d0-89A9-00A0C9054129}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B0406343-B0C5-11d0-89A9-00A0C9054129}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{d24d4450-1f01-11d1-8e63-006097d2df48}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B4DC8DD9-2CC1-4081-9B2B-20D7030234EF}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C63344D8-70D3-4032-9B32-7A3CAD5091A5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{353359C1-39E1-491b-9951-464FD8AB071C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B1BF0DE1-7D27-11D0-A8AA-00A0C921A4D2}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3E198485-919B-11D0-8C46-00C04FC2AB22}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7C8780B2-793F-11D0-94AB-0080C74C7E95}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1F3C67C2-D153-11D0-BF8B-0000F81E8509}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6980ACA5-CFB6-11D0-BF8B-0000F81E8509}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6980ACA9-CFB6-11D0-BF8B-0000F81E8509}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E8C31D11-6FD2-4659-AD75-155FA143F42B}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{44C79591-D0DE-49C4-BA3C-A45AB7003356}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{01002B17-5D93-4551-81E4-831FEF780A53}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1B544C24-FD0B-11CE-8C63-00AA0044B520}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1CB1623E-BBEC-4E8D-B2DF-DC08C6F4627C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2D20D4BB-B47E-4FB7-83BD-E3C2EE250D26}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2EA10031-0033-450E-8072-E27D9E768142}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{41D2B841-7692-4C83-AFD3-F60E845341AF}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4D4C9FEF-ED80-47EA-A3FA-3215FDBB33AB}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4F3E50BD-A9D7-4721-B0E1-00CB42A0A747}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{586FB486-5560-4FF3-96DF-1118C96AF456}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5B4B05EB-1F63-446B-AAD1-E10A34D650E0}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{679E132F-561B-42F8-846C-A70DBDC62999}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6C68955E-F965-4249-8E18-F0977B1D2899}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7F1232EE-44D7-4494-AB8B-CC61B10E21A5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{92883667-E95C-443D-AC96-4CACA27BEB6E}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{930FD02C-BBE7-4EB9-91CF-FC45CC91E3E6}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A2EDA89A-0966-4B91-9C18-AB69F098187F}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AECF5D2E-7A18-4DD2-BDCD-29B6F615B448}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BC0D69A8-0923-4EEE-9375-9239F5A38B92}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C0D076C5-E4C6-4561-8BF4-80DA8DB819D7}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C44C65C7-FDF1-453D-89A5-BCC28F5D69F9}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C6CB1FE3-B05E-4F0E-818F-C83ED5A0332F}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C8F209F8-480E-454C-94A4-5392D88EBA0F}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CC45B0B0-72D8-4652-AE5F-5E3E266BE7ED}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CFFB1FC7-270D-4986-B299-FECF3F0E42DB}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E188F7A3-A04E-413E-99D1-D79A45F70305}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E476CBFF-E229-4524-B6B7-228A3129D1C7}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{EF105BC3-C064-45F1-AD53-6D8A8578D01B}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{EFEE43D6-BFE5-44B0-8063-AC3B2966AB2C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F44BB2D0-F070-463E-9433-B0CCF3CFD627}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5A20FD6F-F8FE-4a22-9EE7-307D72D09E6E}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ADEADEB8-E54B-11d1-9A72-0000F875EADE}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{EC85D8F1-1C4E-46e4-A748-7AA04E7C0496}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A2D4529E-84E0-4550-A2E0-C25D7C5CC0D0}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E673DCF2-C316-4c6f-AA96-4E4DC6DC291E}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D74CA70F-2236-4BA8-A297-4B2A28C2363C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{39A2C2A6-4778-11D2-9BDB-204C4F4F5020}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3DA2AA3E-3D96-11D2-9BD2-204C4F4F5020}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{5DFB2651-9668-11D0-B17B-00C04FC2A0CA}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D17506C3-6B26-11D0-8914-00C04FC2A0CA}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BCE-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BDE-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BC1-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BE2-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BC6-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BF0-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BEC-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{50B4791F-4731-11D0-8912-00C04FC2A0CA}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{25B0F91C-D23D-11D0-9B85-00C04FC2F51D}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BE0-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BD4-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BEE-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BF2-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BD2-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BE6-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BD6-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{9CDE7341-3C20-11D0-A330-00AA00B92C03}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BF4-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BD0-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BC8-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BD8-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BE4-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BC4-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BCC-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BDC-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AF868304-AB0B-11D0-876A-00C04FC29D46}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BCA-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C46C1BDA-3C52-11D0-9200-848C1D000000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{283807B5-2C60-11D0-A31D-00AA00B92C03}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B6FFC24C-7E13-11D0-9B47-00C04FC2F51D}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{69AD90EF-1C20-11d1-8801-00C04FC29D46}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D7A7D7C3-D47F-11D0-89D3-00A0C90833E6}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4F241DB1-EE9F-11D0-9824-006097C99E51}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B0A6BAE2-AAF0-11D0-A152-00A0C908DB96}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FD179533-D86E-11D0-89D6-00A0C90833E6}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{369303C2-D7AC-11D0-89D5-00A0C90833E6}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BB339A46-7C49-11d2-9BF3-00C04FA34789}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{B1549E58-3894-11D2-BB7F-00A0C999C4C1}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A09AE68F-B14D-43ED-B713-BA413F034904}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{F3834A2B-19CF-4A90-BE1D-ECC410D9DA09}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{261F6572-578B-40A7-B72E-61B7261D9F0C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6E3197A3-BBC3-11D4-84C0-00C04F7A06E5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{75C11604-5C51-48B2-B786-DF5E51D10EC9}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{7F5B7F63-F06F-4331-8A26-339E03C0AE3D}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8422DAE3-9929-11CF-B8D3-004033373DA8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8422DAE7-9929-11CF-B8D3-004033373DA8}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DA56F851-D3C5-11D3-844C-00C04F7A06E5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E56CCB42-598C-462D-9AD8-4FD5B4498C5D}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BE4191FB-59EF-4825-AEFC-109727951E42}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{1D95A7C7-3282-4DB7-9A48-7C39CE152A19}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D4FE6227-1288-11D0-9097-00AA004254A0}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D9998BD0-7957-11D2-8FED-00606730D3AA}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4E3D9D1F-0C63-11D1-8BFB-0060081841DE}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{EEE78591-FE22-11D0-8BEF-0060081841DE}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D256B2D9-9C58-445A-8C38-C3AAA84EF137}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{76E5AF9D-2B3E-4FEB-A31F-A9E63A27FA29}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E598AC61-4C6F-4F4D-877F-FAC49CA91FA3}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2AF5BD25-90C5-4EEC-88C5-B44DC2905D8B}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{17E3A1C3-EA8A-4970-AF29-7F54610B1D4C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{FBAB033B-CDD0-4C5E-81AB-AEA575CD1338}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0DDF3B5C-E692-11D1-AB06-00AA00BDD685}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8B217746-717D-11CE-AB5B-D41203C10000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8B217752-717D-11CE-AB5B-D41203C10000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8B21775E-717D-11CE-AB5B-D41203C10000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8936033C-4A50-11D1-98A4-00A0C90F27C6}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1b-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1c-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1d-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1e-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f1f-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f20-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f21-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f22-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f26-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f28-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{f5078f29-c551-11d3-89b9-0000f81fe221}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0D3983A9-4E29-4f33-8313-DA22B29D3F87}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{0F6A72B9-D3C5-4fce-89A3-4E3D19C3580A}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{121E91E7-E915-4aa6-89F3-BA62D10A4C49}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{201EA564-A6F6-11D1-811D-00C04FB6BD36}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2CC3D8DE-18BF-43ff-8CB8-21B442300FD5}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{2EFF8C97-F2A8-4395-9F47-9A06F998BF88}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{40F8967E-34A6-474a-837A-CEC1E7DAC54C}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{4F720B9C-24B1-4948-A035-8853DC01F19E}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{66B4546F-C263-11D1-B1C9-444553540000}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{823AA622-D72B-42d4-905D-FDD9FC9600FC}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8C63DABA-CBA8-4b5d-A0F7-AE00F2920929}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{8CE3BAE6-AB66-40b6-9019-41E5282FF1E2}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{A80D199B-CFDD-4da4-8C47-2310D5B8DD97}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AD5FBDB8-C518-47F7-B4F1-F1F58D21A716}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{AF54BFA2-474E-4b82-A5F3-B79E6F7A80B1}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C1908682-7B2C-4AB0-B98E-183649A0BF84}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C3C9CB67-F453-479a-9AB0-94AE65F2EB2F}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{CF9DEB90-8DE3-11D5-BAE4-00105AAAFF94}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{D92D7607-05D9-4dd8-B68B-D458948FB883}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{DBB177CC-6908-4b53-9BEE-F1C697818D65}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E5D419D6-A846-4514-9FAD-97E826C84822}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{22852EE3-B01B-11CF-B826-00A0C9055D9E}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{EF28418F-FFB2-11D0-861A-00A0C903A97F}","Compatibility Flags",0x00010001,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C533ADF1-0C80-11d1-8C54-00A02468F316}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{754FF233-5D4E-11d2-875B-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{E80353D3-677D-11d2-875E-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{3845A174-EB30-11D1-9A23-00A0C879FE5F}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{027713F2-5FA8-11d2-875B-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{C5B86F32-69EE-11d2-875F-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{80F49562-6A9A-11d2-875F-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{ECDB03D2-6E99-11d2-875F-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{BA60F742-6F72-11d2-875F-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{6DDE3061-736C-11D2-A5E8-00A0C967A25F}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{54274112-7A5E-11d2-875F-00A0C93C09B3}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\{58A2E406-8304-11D2-9533-0060B0C3C4F4}","Compatibility Flags",0x00010001,0x4000400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\Application Compatibility","HelpCtr.exe",0x00010001,1
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Plugin%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_IELabel%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_TSActiveX1%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_TSActiveX_WinXPGold%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_TSActiveX_Server%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat4%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat4_2%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat41%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_MSFlUpl%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_LMReader1%", "Compatibility Flags",%REG_COMPAT%,0x4000400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_MSNInstallEnginer1%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3HistoryCtl%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3MemberCtl%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3InputCtl%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3Items%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3ChannelObject%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3ChannelsCollection%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_Chat3MsCCPr%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_DirectXFilesViewer%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\%CLSID_HtmlHelp%", "Compatibility Flags",%REG_COMPAT%,0x400
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\074ff50d0fbf0ccec37f65e137c91ee48442fe4c","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\112dbd99bb88b1adc7241d45e67f03f0096122b5","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\1e22e3489d45f5d0436b91cd0d7a9d6c718392f2","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\211a51007d3b2d592246f633ca522869010a3180","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\2260e52c41edd4ee1dba0b1051b9ae675947f956","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\392495ff02597715601fd2c4ae18d00261a01c62","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\487b786451026baefd474b8758c058d538ec35cb","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\507010021a6700c5c5aa4da51ef0fa2ea6fdbef4","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\5f3ef8894394826345eb838c8c72f3a40b521893","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\60f969428f86d74efe20d4fdb42653d6655afaa4","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\6d3bc8d0f5f3daa9bf40880fd115fe497f2c4aa1","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\8335cb2f7e042a1df46954b65c073a7bf43b2ec3","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\b9bfd941ce483b77b1be1941b470848a36ad39db","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\c1637989205dafc7035f8d43d76cf87fd11e99db","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\c5a52b6eea9a0de8718ab9f50e9029738bb58650","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\c80ce4f484a66e40bba6b0b6f231790128b8a7be","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\d50177c73771e26f40660ca3c5076d73369ad830","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\d94fdfcfff998d72eb4d83f0b5715710d86a62f2","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\de9132d488a64ba12fc5570359923764e37a50a6","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\f14d6e86c5fec67242111d83eea3214170c09ff6","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\ac343ceccf835e2fef435465263770412b7573b4","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\de9132d488a64ba12fc5570359923764e37a50a6","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\dab19789f45adf2619890cfa16913123def29f14","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\bb4a18b31eee24da9be3bd537b1b7fc2b8a2ae3f","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\7ecf15202c3c29b487e60659ae59c77b961a2f67","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\1629bfb58e16192f41a50816d8448c301989e007","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\da5afc10f5d3dbfdcb9e2a2506323260051d77cf","Policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\96c15bc81af7b79f500cdf3507d047721ca98331","policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\8fd22f348f4edb71c386d77a35137186c317825e","policy",0x00010001,0xffffffff
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\ActiveX Compatibility\Restriction Policies\Hashes\eb4a2ff794b718f4659294a39f11a9b769afaf81","policy",0x00010001,0xffffffff
+HKLM,"Software\Microsoft\Active Setup\Installed Components\%GUID%",,,"%COMPID%"
+HKLM,"Software\Microsoft\Active Setup\Installed Components\%GUID%","IsInstalled",0x10001,01,00,00,00    
+HKLM,"Software\Microsoft\Active Setup\Installed Components\%GUID%","Version",,"%VERSION%"
+HKLM,"Software\Microsoft\Active Setup\Installed Components\%GUID%","ComponentID",,"%COMPID%"
+HKLM,"Software\Microsoft\Active Setup\Installed Components\%GUID%","PackageVersion",0x00010001,1
+HKCU,"%PATH_ZONES_LOCAL%","1206",0x10003,0x0
+HKCU,"%PATH_ZONES_INTRANET%","1206",0x10003,0x0
+HKCU,"%PATH_ZONES_TRUSTED%","1206",0x10003,0x0
+HKCU,"%PATH_ZONES_INTERNET%","1206",0x10003,0x3
+HKCU,"%PATH_ZONES_UNTRUSTED%","1206",0x10003,0x3
+HKLM,"%PATH_ZONES_LOCAL%","1206",0x10003,0x0
+HKLM,"%PATH_ZONES_INTRANET%","1206",0x10003,0x0
+HKLM,"%PATH_ZONES_TRUSTED%","1206",0x10003,0x0
+HKLM,"%PATH_ZONES_INTERNET%","1206",0x10003,0x3
+HKLM,"%PATH_ZONES_UNTRUSTED%","1206",0x10003,0x3
+HKLM,"%PATH_ZONES_LOCAL%","1207",0x10003,0x0
+HKLM,"%PATH_ZONES_INTRANET%","1207",0x10003,0x0
+HKLM,"%PATH_ZONES_TRUSTED%","1207",0x10003,0x0
+HKLM,"%PATH_ZONES_INTERNET%","1207",0x10003,0x3
+HKLM,"%PATH_ZONES_UNTRUSTED%","1207",0x10003,0x3
+HKLM,"%PATH_ZONES_UNTRUSTED%","180B",0x10003,0x1 ; Allow IE to shell drag and drop
+HKLM,"%PATH_TEMPOL_HI%","180B",0x10003,0x1 ; Allow IE to shell drag and drop
+HKLM,"%PATH_DRAGPROTOCOLS%",,, 
+HKLM,"%PATH_DRAGPROTOCOLS%\0",,, 
+HKLM,"%PATH_DRAGPROTOCOLS%\1",,, 
+HKLM,"%PATH_DRAGPROTOCOLS%\2",,, 
+HKLM,"%PATH_DRAGPROTOCOLS%\3",,, 
+HKLM,"%PATH_DRAGPROTOCOLS%\4",,,              ; allow none to be dragged from Restricted 
+HKLM,"%PATH_DRAGPROTOCOLS%\0","*",0x10001,0x0 ; allow all protcols to be dragged from LMZ
+HKLM,"%PATH_DRAGPROTOCOLS%\1","http",0x10001,0x0 ; allow http to be dragged from Intranet
+HKLM,"%PATH_DRAGPROTOCOLS%\1","https",0x10001,0x0 ; allow https to be dragged from Intranet
+HKLM,"%PATH_DRAGPROTOCOLS%\2","*",0x10001,0x0 ; allow all protcols to be dragged from Trusted
+HKLM,"%PATH_DRAGPROTOCOLS%\3","http",0x10001,0x0  ; allow http to be dragged from Internet
+HKLM,"%PATH_DRAGPROTOCOLS%\3","https",0x10001,0x0 ; allow https to be dragged from Internet
+HKLM,"%PATH_DRAGPROTOCOLS%\4","http",0x10001,0x0  ; allow http to be dragged from Restricted Zone
+HKLM,"%PATH_DRAGPROTOCOLS%\4","https",0x10001,0x0 ; allow https to be dragged from Restricted Zone
+HKLM,"%PATH_ALLOWEDIMGEXTS%",,,
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".aif",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".aifc",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".aiff",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".art",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".asf",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".asx",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".au",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".avi",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".bm",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".bmp",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".dib",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".dvr-ms",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".emf",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".gif",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".ico",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".jfif",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".jpe",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".jpeg",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".jpg",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".m1v",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".m3u",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mid",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".midi",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mp2",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mp2v",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mp3",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mpa",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mpe",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mpeg",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mpg",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mpv",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".mpv2",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".png",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".rmi",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".snd",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".tif",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".tiff",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wav",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wax",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wm",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wma",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wmf",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wmp",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wmv",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wmx",0x10003,0x1
+HKLM,"%PATH_ALLOWEDIMGEXTS%",".wvx",0x10003,0x1
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_IMAGING_USE_ART"
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_IMAGING_USE_ART","waol.exe",0x10003,0x1
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_IMAGING_USE_ART","cs.exe",0x10003,0x1
+HKLM,"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_IMAGING_USE_ART","wm.exe",0x10003,0x1
+HKCR,"CLSID\%CLSID_ShellWindows%",,,"%DESC_WinListShellProc%"
+HKCR,"CLSID\%CLSID_ShellWindows%\%IPS%",,%RES%,"%11%\shdocvw.dll"
+HKCR,"CLSID\%CLSID_ShellWindows%\%IPS%",ThreadingModel,,Apartment
+;
+;  form MDAC
+;
+HKLM,SOFTWARE\Microsoft\DataAccess,"FullInstallVer",0,"2.81.1145.0"
+HKLM,SOFTWARE\Microsoft\DataAccess,"PatchLevel",0,"2.81.1145.0"
+
+[Product.RunOnce]
+
+[DestinationDirs]
+SystemRoot.Files=10             ; %windir% (replace if exist)
+CopyAlways.SystemRoot.files=10  ; %windir% (replace if exist)
+CopyAlways.Templates.Files=10,security\templates
+System.Files=10,"System"        ; %windir%
+System32.Files=11               ; %windir%\system32 (replace if exist)
+MDAC.Files=11                   ; %windir%\system32 (replace if exist)
+System32.Delfiles=11            ; %windir%\system32 (delete if exist)
+IE50.Files=11                   ; %windir%\system32 (replace if exist)
+CopyAlways.System32.Files=11    ; %windir%\system32 (copy even if don't exist)
+MustReplace.System32.Files=11   ; %windir%\system32 (don't delay until reboot)
+CheckSecurity.System32.Files=11 ; %windir%\system32 (warn if std encryption security replacing high)
+Export.Files=11,export          ; %windir%\system32\export (replace if exist)
+CopyAlways.DriverCab.Files=65623 ; Destination determined at runtime
+Drivercab.Delfiles=65623 ; Destination determined at runtime
+ServicePackDeleteFiles=10,servicepackfiles\i386
+SMTP.Files=11,inetsrv           ; %windir%\system32\inetsrv (replace if exist)
+Netmon.Files=11,"netmon"        ; %windir%\system32\netmon
+Netmon.Parser.Files=11,"netmon\parsers" ; %windir%\system32\netmon\parsers
+IAS.Files=11,"ias"              ; %windir%\system32\ias
+Drivers.Files=12                ; %windir%\system32\drivers (don't delay until reboot)
+NEC98.Drivers.Files=12          ; %windir%\system32\drivers (don't delay until reboot)
+CopyAlways.Drivers.Files=12     ; %windir%\system32\drivers (copy even if don't exist)
+CheckSecurity.Drivers.Files=12  ; %windir%\system32\drivers (warn if std encryption security replacing high)
+Uniprocessor.Kernel.Files=11    ; %windir%\system32 (don't delay until reboot)
+UniProc.DriverCab.Files=65623 ; Destination determined at runtime
+UniProc.Cache.Files=65619
+Multiprocessor.Kernel.Files=11  ; %windir%\system32 (don't delay until reboot)
+MultiProc.DriverCab.Files=65623 ; Destination determined at runtime
+MultiProc.Cache.Files=65619
+Cache.Files=65619               ; %windir%\system32\DllCache (replace if exist)
+MDAC.Cache.Files=65619          ; %windir%\system32\DllCache (replace if exist)
+NEC98.Cache.Files=65619         ; %windir%\system32\DllCache (replace if exist)
+CopyAlways.Cache.Files=65619           ; %windir%\system32\DllCache (copy even if don't exist)
+DataCenter.Cache.Files=65619    ; %windir%\system32\DllCache (replace if exist)
+WindowsPowered.Cache.Files=65619    ; %windir%\system32\DllCache (replace if exist)
+Advanced.Cache.Files=65619      ; %windir%\system32\DllCache (replace if exist)
+Server.Cache.Files=65619        ; %windir%\system32\DllCache (replace if exist)
+Professional.Cache.Files=65619  ; %windir%\system32\DllCache (replace if exist)
+DataCenter.Drivers.Files=12     ; %windir%\system32\drivers (replace if exist)
+WindowsPowered.Drivers.Files=12       ; %windir%\system32\drivers (replace if exist)
+Advanced.Drivers.Files=12       ; %windir%\system32\drivers (replace if exist)
+Server.Drivers.Files=12       ; %windir%\system32\drivers (replace if exist)
+Professional.Drivers.Files=12       ; %windir%\system32\drivers (replace if exist)
+CopyAlways.Prf.System32.Files=11    ; %windir%\system32 (copy even if don't exist)
+CopyAlways.Prf.Drivers.Files=12     ; %windir%\system32\drivers (copy even if don't exist)
+CopyAlways.Prf.Inf.Files=17         ; %windir%\inf (copy even if don't exist)
+CopyAlways.Prf.Setup.Files=11,Setup ; %windir%\system32\Setup (copy always)
+CopyAlways.Srv.System32.Files=11    ; %windir%\system32 (copy even if don't exist)
+CopyAlways.Srv.Drivers.Files=12     ; %windir%\system32\drivers (copy even if don't exist)
+CopyAlways.Srv.WBEM.Files=11,WBEM   ; WBEM root (copy even if don't exist)
+CopyAlways.Srv.Help.Files=10,"Help" ; %windir%\help (copy even if don't exist)
+CopyAlways.Srv.Inf.Files=17         ; %windir%\inf (copy even if don't exist)
+CopyAlways.Adv.System32.Files=11    ; %windir%\system32 (copy even if don't exist)
+CopyAlways.Adv.Drivers.Files=12     ; %windir%\system32\drivers (copy even if don't exist)
+CopyAlways.Adv.Inf.Files=17         ; %windir%\inf (copy even if don't exist)
+CopyAlways.Dtc.System32.Files=11    ; %windir%\system32 (copy even if don't exist)
+CopyAlways.Dtc.Drivers.Files=12     ; %windir%\system32\drivers (copy even if don't exist)
+CopyAlways.Dtc.Inf.Files=17         ; %windir%\inf (copy even if don't exist)
+CopyAlways.Pwr.System32.Files=11    ; %windir%\system32 (copy even if don't exist)
+CopyAlways.Pwr.Drivers.Files=12     ; %windir%\system32\drivers (copy even if don't exist)
+CopyAlways.Pwr.Inf.Files=17         ; %windir%\inf (copy even if don't exist)
+DataCenter.Templates.Files=10,security\templates
+WindowsPowered.Templates.Files=10,security\templates
+Advanced.Templates.Files=10,security\templates
+Server.Templates.Files=10,security\templates
+Professional.Templates.Files=10,security\templates
+System32.56bit.Files=11
+System32.128bit.Files=11
+Drivers.56bit.Files=12
+Drivers.128bit.Files=12
+Cache.56bit.Files=65619
+Cache.128bit.Files=65619
+Osldr.Files=54                  ; path to ntldr or osloader.exe (don't delay until reboot)
+Setup.Files=11,Setup            ; %windir%\system32\Setup (replace if exist)
+RpcProxy.Files=11,rpcproxy      ; %windir%\system32\rpcproxy (replace if exist)
+DirSync10.Files=11,"directory synchronization"  ; %windir%\system32\directory synchronization (replace if exist)
+Inf.Files=17                    ; %windir%\inf      (replace if exist)
+CopyAlways.Inf.Files=17         ; %windir%\inf      (copy even if don't exist)
+DataCenter.Inf.Files=17         ; %windir%\inf      (replace if exist)
+WindowsPowered.Inf.Files=17         ; %windir%\inf      (replace if exist)
+Advanced.Inf.Files=17           ; %windir%\inf      (replace if exist)
+Server.Inf.Files=17             ; %windir%\inf      (replace if exist)
+Professional.Inf.Files=17       ; %windir%\inf      (replace if exist)
+Fonts.Files=20                  ; %windir%\fonts    (replace if exist)
+Spldrv.Files=65690,3            ; %windir%\system32\spool\drivers\<platform>\3
+Spldrv.Files.NT40=65690,2       ; %windir%\system32\spool\drivers\<platform>\2
+PrintProcessor.Files=65691      ; %windir%\system32\spool\prtprocs\w32x86
+OLEDB.Files=65620,"SYSTEM\ole db" ; commond files\ole db(replace if exist)
+Common.System.Files=65620,"SYSTEM" ; common files\system(replace if exist)
+IIS.Files=65601                 ; destination determined at runtime
+MustReplace.IIS.Files=65601     ; destination determined at runtime
+IISAdmin.Files=65601,iisadmin   ; destination determined at runtime
+IISASPHelp.Files=10,"help\iishelp\iis\htm\asp"
+IISDocSearch.files=10,"Help\iisHelp\iis\misc"            ;%windir%\Help\iisHelp\iis\misc
+IISHTR.Files=65601, "iisadmpwd"
+CopyAlways.IISNewHTRFiles=65601, "iisadmpwd"
+FPNW.Files=65602                ; destination determined at runtime
+HTR.Files=65603                 ; destination determined at runtime
+IE.Files=65604                  ; destination determined at runtime
+ResKit.Files=66002              ; destination determined at runtime
+Hyper.Files=65605               ; destination determined at runtime
+Eudc.Files=65606                ; destination determined at runtime
+Cluster.Files=65607             ; destination determined at runtime
+Mts.Files=65610                 ; destination determined at runtime
+SupportTools.Files=65626        ; destination determined at runtime
+DataCenter.IIS.Inf.Files=65601    ; destination determined at runtime
+WindowsPowered.IIS.Inf.Files=65601    ; destination determined at runtime
+Advanced.IIS.Inf.Files=65601    ; destination determined at runtime
+Server.IIS.Inf.Files=65601      ; destination determined at runtime
+Professional.IIS.Inf.Files=65601 ; destination determined at runtime
+Proxy.Files=65609
+WBEM.Files=11,WBEM              ; WBEM root (replace if exists)
+CMAK.Files=65615                ; Destination determined at runtime
+CMAK.Support.Files=65615,"Support"     ; Destination determined at runtime
+ServicePackFiles.IA.IP.IS.IW.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.ID.IS.IW.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.ID.IW.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.IP.IS.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.ID.IS.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.ID.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.IS.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IW.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IS.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IP.Files=65621 ; Destination determined at runtime
+ServicePackFiles.ID.Files=65621 ; Destination determined at runtime
+ServicePackFiles.IA.Files=65621 ; Destination determined at runtime
+ServicePackFiles.CommonFiles=65621 ; Destination determined at runtime
+ServicePackJPNFiles=65621,"lang\jpn" ; Destination determined at runtime
+ServicePackCHSFiles=65621,"lang\chs" ; Destination determined at runtime
+ServicePackCHTFiles=65621,"lang\cht" ; Destination determined at runtime
+ServicePackKORFiles=65621,"lang\kor" ; Destination determined at runtime
+Help.Files=10,"Help"                   ;%windir%\help
+Advanced.Help.Files=10,"Help"          ;%windir%\help
+WindowsPowered.Help.Files=10,"Help"    ;%windir%\help
+CopyAlways.Help.Files=10,"Help"        ;%windir%\help
+Media.Files=11,"windows media\server"
+Media.Tools.Files=65618,"windows media components\tools"
+MediaPlayer.Files=65618,"Windows Media Player"  ; program files\windows media player
+MSInfo.Files=65620,"Microsoft Shared\msinfo"
+DAO.Files=65620,"Microsoft Shared\DAO"   ; Common Files\Microsoft Shared\DAO
+MSADC.Files=16427,"System\MSADC"         ; Common files\System\MSADC (RIE)
+ADO.Files=16427,"System\ADO"             ; common files\system\ado   (RIE)
+OE.Files=65618,"Outlook Express"         ; program files\outlook express (RIE)
+CopyAlways.OE.Files=65618,"Outlook Express"         ; program files\outlook express (RIE)
+Windows.NT=65618,"Windows NT"            ; Program Files\Windows NT
+Kodak.Files=65618,%KODAK_DIR%            ; Program Files\Windows NT\Accessories\ImageVue
+ResourceKit.Files=65618,"Resource Kit" ; program files\Resource Kit
+WSE.Bin.Files=65620,"Microsoft Shared\Web Server Extensions\40\bin"
+WSE.SRV.Files=65620,"Microsoft Shared\Web Server Extensions\40\servsupp"
+WSE.Bots.Files=65620,"Microsoft Shared\Web Server Extensions\40\bots\vinavbar"
+WSE.ISAPI.Files=65620,"Microsoft Shared\Web Server Extensions\40\isapi\_vti_adm"
+WSE.IAUT.Files=65620,"Microsoft Shared\Web Server Extensions\40\isapi\_vti_aut"
+WSE.VTI.Files=65620,"Microsoft Shared\Web Server Extensions\40\_vti_bin\_vti_adm"
+WSE.AUT.Files=65620,"Microsoft Shared\Web Server Extensions\40\_vti_bin\_vti_aut"
+WSE.SCR.Files=65620,"microsoft shared\web server extensions\40\admcgi\scripts"
+WSE.ASCR.Files=65620,"microsoft shared\web server extensions\40\admisapi\scripts"
+WSE.VTIBIN.Files=65620,"microsoft shared\web server extensions\40\_vti_bin"
+WSE.IP.Files=65620,"microsoft shared\web server extensions\40\isapi"
+WSE.VB.Files=65620,"microsoft shared\web server extensions\40\_vti_bin"
+WSE.Lang.Files=65620,"microsoft shared\web server extensions\40\BIN\%WSEDIR%"
+FP.Files=65618,"Microsoft Frontpage\version3.0\bin"
+ADMT.FIles=65622
+Terminal.Service32.Files=11,"Clients\tsclient\net\win32"
+Terminal.Service16.Files=11,"Clients\tsclient\net\win16"
+TSClient.Files=65624 ; Destination determined at runtime
+TSClientDefault.Files=65618,%TSCLIENTDIR%
+TS32Disk1.Install.Files=11,"clients\tsclient\win32\disks\disk1"
+TS32Disk2.Install.Files=11,"clients\tsclient\win32\disks\disk2"
+TS32Disk3.Install.Files=11,"clients\tsclient\win32\disks\disk3"
+TS32Disk4.Install.Files=11,"clients\tsclient\win32\disks\disk4"
+TS16Disk1.Install.Files=11,"clients\tsclient\win16\disks\disk1"
+TS16Disk2.Install.Files=11,"clients\tsclient\win16\disks\disk2"
+TS16Disk3.Install.Files=11,"clients\tsclient\win16\disks\disk3"
+TS16Disk4.Install.Files=11,"clients\tsclient\win16\disks\disk4"
+RIS.Reminst.Files=11,Reminst    ; %windir%\system32\reminst (replace if exist)
+RIS.Admin.Files=65625,"admin\i386"           ; destination determined at runtime
+RIS.OSChooser.Files=65625,"oschooser\i386"
+Certsrv.Files=11,CertSrv ; %windir%\system32\CertSrv (replace if exist)
+CopyAlways.Certsrv.Files=11,CertSrv ; %windir%\system32\CertSrv (copy even if don't exist)
+Control.Files=11,CertSrv\CertControl ; %windir%\system32\CertSrv\CertControl (replace if exist)
+Control.x86.Files=11,CertSrv\CertControl\x86     ; %windir%\system32\CertSrv\CertControl\x86(replace if exist)
+Control.alpha.Files=11,CertSrv\CertControl\alpha ; %windir%\system32\CertSrv\CertControl\alpha (replace if exist)
+ConnWiz.Files=65618,"Internet Explorer\Connection Wizard"
+AppPatch.Files=10,AppPatch
+AppPatch.DelFiles=10,AppPatch
+CopyAlways.AppPatch.Files=10,AppPatch       ; copy always
+AppPatch.Help.Files=10,"Help"               ; copy always
+Com.Files=11,com
+WebPrinters.Files=10,"Web\Printers"
+WebPrinters.Delfiles=10,"Web\Printers"
+Web.Files=10,"Web"
+WebFolders.Files=65620,"Microsoft Shared\Web Folders"
+PhoneBook.Files=65618,"Phone Book Service\bin"
+NetMeeting.Files=65618,"NetMeeting"
+Startmenu.Files=16408           ; ...\All Users\Start Menu\Programs\Startup
+IMEJP.Files=10,ime\imejp
+IMEJPApplet.Files=10,ime\imejp\applets
+AutoUpdate.System32.Files=11             ; Windows AutoUpdate files (%windir%\system32)
+AutoUpdate.System32.DelFiles=11          ; Windows AutoUpdate files (%windir%\system32)
+AutoUpdate.Root.DelFiles=25              ; Windows AutoUpdate files (shared directory)
+AutoUpdate.Inf.DelFiles=17               ; Windows AutoUpdate files (%windir%\system32)
+AutoUpdate.Tasks.DelFiles=10,"Tasks"     ; Windows AutoUpdate files (%windir%\system32)
+AutoUpdate.Help.Files=10,"Help"          ; Windows AutoUpdate files (%windir%\Help)
+AutoUpdate.Adm.Files=17                  ; Windows AutoUpdate files (%windir%\inf)
+AutoUpdate.DllCache.Files=65619          ; %windir%\system32\DllCache (replace if exist)
+MUI.files=10,"mui\fallback"        ; %windir%\MUI\fallback (replace if exist)
+USB2.Files=10,"USB2"               ; %windir%\USB2 (replace if exist)
+MSI20Stage = 65692  ; set by MSI20.DirId
+DontRemoveOnUninstall.Files=11
+CopyAlways.IE.DE.Files=11,ie_de          ; %windir%\system32\ie_de (copy even if don't exist)
+TextConv.Files=65620,"Microsoft Shared\TextConv"
+Triedit.Files=65620,"Microsoft Shared\Triedit" ; Common Files\Microsoft Shared\Triedit
+MSAgent.Files=10,"msagent"               ; %windir%\msagent (replace if exist)
+NPP.Files=11,"npp"                       ; %windir%\system32\npp (replace if exist)
+Windows.NT.Accessories.Files=65618,%ACCESSOR%
+Copy.dllcache.V8DME=65619
+Copy.system32.V8DME=11
+Copy.dllcache.WM10=65619
+Copy.system32.WM10=11
+Copy.dllcache.WM41=65619
+Copy.system32.WM41=11
+Copy.dllcache.WM71=65619
+Copy.system32.WM71=11
+Copy.dllcache.WM9=65619
+Copy.system32.WM9=11
+Copy.dllcache.WM9L=65619
+Copy.system32.WM9L=11
+Copy.dllcache.WM64=65619
+Copy.system32.WM64=11
+Copy.dllcache.DX9=65619
+Copy.system32.DX9=11
+
+
+[TextConv.Files]
+
+[AutoUpdate.System32.Files]
+
+[AutoUpdate.Help.Files]
+
+[AutoUpdate.Adm.Files]
+
+[AutoUpdate.DllCache.Files]
+
+
+[AutoUpdate.System32.DelFiles]
+
+
+[AutoUpdate.Root.DelFiles]
+
+
+[AutoUpdate.Inf.DelFiles]
+
+
+[AutoUpdate.Tasks.DelFiles]
+
+
+[Startmenu.Files]
+
+
+[MUI.files]
+
+
+[USB2.Files]
+
+
+[CopyAlways.Templates.Files]
+
+
+[CopyAlways.SystemRoot.files]
+
+
+[Media.Tools.Files]
+
+
+[MediaPlayer.Files]
+
+
+[System.Files]
+
+
+[WSE.Lang.Files]
+
+
+[WSE.Bin.Files]
+
+
+[WSE.SRV.Files]
+
+
+[WSE.Bots.Files]
+
+
+[WSE.ISAPI.Files]
+
+
+[WSE.IAUT.Files]
+
+
+[WSE.VTI.Files]
+
+
+[WSE.AUT.Files]
+
+
+[WSE.SCR.Files]
+
+
+[WSE.ASCR.Files]
+
+
+[WSE.VTIBIN.Files]
+
+
+[WSE.IP.Files]
+
+
+[WSE.VB.Files]
+
+
+[Proxy.Files]
+
+
+[FP.Files]
+
+
+[Windows.NT]
+
+
+[Kodak.Files]
+
+
+[ResourceKit.Files]
+
+
+[OE.Files]
+
+
+[CopyAlways.OE.Files]
+
+
+[CopyAlways.IE.DE.Files]
+
+
+[MSADC.Files]
+
+
+[ADO.Files]
+msado15.dll,files\msado15.dll
+msadomd.dll,files\msadomd.dll
+msADOX.dll,files\msADOX.dll
+msjro.dll,files\msjro.dll
+
+[ADMT.Files]
+
+
+[Terminal.Service32.Files]
+
+
+[Terminal.Service16.Files]
+
+
+[TSClient.Files]
+
+
+[TSClientDefault.Files]
+
+
+[TS32Disk1.Install.Files]
+
+
+[TS32Disk2.Install.Files]
+
+
+[TS32Disk3.Install.Files]
+
+
+[TS32Disk4.Install.Files]
+
+
+[TS16Disk1.Install.Files]
+
+
+[TS16Disk2.Install.Files]
+
+
+[TS16Disk3.Install.Files]
+
+
+[TS16Disk4.Install.Files]
+
+
+[MSInfo.Files]
+
+
+[DAO.Files]
+
+
+[IAS.Files]
+
+
+[Help.Files]
+
+
+[Advanced.Help.Files]
+
+
+[WindowsPowered.Help.Files]
+
+
+[CopyAlways.Help.Files]
+
+
+[Media.Files]
+
+
+[Common.System.Files]
+
+
+[CMAK.Files]
+
+
+[CMAK.Support.Files]
+
+
+[DirSync10.Files]
+
+
+[MustReplace.System32.Files]
+spoolsv.exe
+oleaut32.dll
+IMAGEHLP.DLL
+
+
+[CopyAlways.System32.Files]
+sp3res.dll,,,8
+msxml3.dll
+
+[CopyAlways.Drivers.Files]
+
+
+[Replace.Drivers.Files]
+
+
+[CopyAlways.Inf.Files]
+
+
+[CopyAlways.DriverCab.Files]
+ntkrnlmp.exe,,,8
+ntkrnlpa.exe,,,8
+ntkrpamp.exe,,,8
+ntoskrnl.exe,,,8
+win32k.sys
+
+
+[CopyAlways.Prf.System32.Files]
+
+
+[CopyAlways.Prf.Drivers.Files]
+
+
+[CopyAlways.Prf.Inf.Files]
+
+
+[CopyAlways.Prf.Setup.Files]
+
+
+[CopyAlways.Srv.System32.Files]
+
+
+[CopyAlways.Srv.Drivers.Files]
+
+
+[CopyAlways.Srv.WBEM.Files]
+
+
+[CopyAlways.Srv.Help.Files]
+
+
+[CopyAlways.Srv.Inf.Files]
+
+
+[CopyAlways.Adv.System32.Files]
+
+
+[CopyAlways.Adv.Drivers.Files]
+
+
+[CopyAlways.Adv.Inf.Files]
+
+
+[CopyAlways.Dtc.System32.Files]
+
+
+[CopyAlways.Dtc.Drivers.Files]
+
+
+[CopyAlways.Dtc.Inf.Files]
+
+
+[CopyAlways.Pwr.System32.Files]
+
+
+[CopyAlways.Pwr.Drivers.Files]
+
+
+[CopyAlways.Pwr.Inf.Files]
+
+
+[SystemRoot.Files]
+
+
+[MSAgent.Files]
+
+
+[NPP.Files]
+
+
+[System32.Files]
+GDI32.DLL,,,8
+mf3216.dll,,,8
+ODBC32.dll,files\ODBC32.dll
+t2embed.dll
+iccvid.dll
+thumbvw.dll
+faxcover.exe
+mfc42.dll
+mfc42u.dll
+WINS.EXE,,,8
+WINSEVNT.DLL,,,8
+mciseq.dll
+winmm.dll
+dbghelp.dll
+browser.dll,,,8
+NETAPI32.DLL,,,8
+synceng.dll
+wintrust.dll,,,8
+ole32.dll,,,8
+scrrun.dll
+usp10.dll
+shell32.dll,,,8
+jscript.dll
+vbscript.dll
+BROWSEUI.DLL,RTMQFE\BROWSEUI.DLL
+CDFVIEW.DLL,RTMQFE\CDFVIEW.DLL
+DANIM.DLL,RTMQFE\DANIM.DLL
+DXTMSFT.DLL,RTMQFE\DXTMSFT.DLL
+DXTRANS.DLL,RTMQFE\DXTRANS.DLL
+IEPEERS.DLL,RTMQFE\IEPEERS.DLL
+INSENG.DLL,RTMQFE\INSENG.DLL
+JSPROXY.DLL,RTMQFE\JSPROXY.DLL
+MSHTML.DLL,RTMQFE\MSHTML.DLL
+MSHTMLED.DLL,RTMQFE\MSHTMLED.DLL
+MSRATING.DLL,RTMQFE\MSRATING.DLL
+MSTIME.DLL,RTMQFE\MSTIME.DLL
+PNGFILT.DLL,RTMQFE\PNGFILT.DLL
+SHDOCVW.DLL,RTMQFE\SHDOCVW.DLL
+SHLWAPI.DLL,RTMQFE\SHLWAPI.DLL
+TDC.OCX,RTMQFE\TDC.OCX
+URLMON.DLL,RTMQFE\URLMON.DLL
+VGX.DLL,RTMQFE\VGX.DLL
+WININET.DLL,RTMQFE\WININET.DLL
+
+
+[IE50.Files]
+
+[Cache.Files]
+GDI32.DLL,,,8
+mf3216.dll,,,8
+msado15.dll,files\msado15.dll
+msadomd.dll,files\msadomd.dll
+msADOX.dll,files\msADOX.dll
+msjro.dll,files\msjro.dll
+ODBC32.dll,files\ODBC32.dll
+t2embed.dll
+iccvid.dll
+spoolsv.exe
+oleaut32.dll
+thumbvw.dll
+faxcover.exe
+mfc42.dll
+mfc42u.dll
+srv.sys
+WINS.EXE,,,8
+WINSEVNT.DLL,,,8
+mup.sys
+mrxsmb.sys
+rdbss.sys
+mciseq.dll
+winmm.dll
+dbghelp.dll
+imagehlp.dll
+NTKRNLMP.EXE,,,8
+ntkrnlpa.exe
+NTKRPAMP.EXE,,,8
+ntoskrnl.exe
+win32k.sys
+browser.dll
+NETAPI32.DLL
+msxml3.dll
+synceng.dll
+wintrust.dll,,,8
+ole32.dll
+scrrun.dll
+usp10.dll
+shell32.dll
+jscript.dll
+vbscript.dll
+BROWSEUI.DLL,RTMQFE\BROWSEUI.DLL
+CDFVIEW.DLL,RTMQFE\CDFVIEW.DLL
+DANIM.DLL,RTMQFE\DANIM.DLL
+DXTMSFT.DLL,RTMQFE\DXTMSFT.DLL
+DXTRANS.DLL,RTMQFE\DXTRANS.DLL
+IEPEERS.DLL,RTMQFE\IEPEERS.DLL
+INSENG.DLL,RTMQFE\INSENG.DLL
+JSPROXY.DLL,RTMQFE\JSPROXY.DLL
+MSHTML.DLL,RTMQFE\MSHTML.DLL
+MSHTMLED.DLL,RTMQFE\MSHTMLED.DLL
+MSRATING.DLL,RTMQFE\MSRATING.DLL
+MSTIME.DLL,RTMQFE\MSTIME.DLL
+PNGFILT.DLL,RTMQFE\PNGFILT.DLL
+SHDOCVW.DLL,RTMQFE\SHDOCVW.DLL
+SHLWAPI.DLL,RTMQFE\SHLWAPI.DLL
+TDC.OCX,RTMQFE\TDC.OCX
+URLMON.DLL,RTMQFE\URLMON.DLL
+VGX.DLL,RTMQFE\VGX.DLL
+WININET.DLL,RTMQFE\WININET.DLL
+
+
+[NEC98.Cache.Files]
+
+
+[NEC98.Drivers.Files]
+
+
+[CopyAlways.Cache.Files]
+sp3res.dll,,,8
+
+[Drivers.Files]
+srv.sys
+mup.sys
+mrxsmb.sys
+rdbss.sys
+rdpwd.sys
+
+[Osldr.Files]
+
+
+[Setup.Files]
+
+
+[Inf.Files]
+
+
+[Spldrv.Files]
+
+
+[Spldrv.Files.NT40]
+
+
+[PrintProcessor.Files]
+
+
+[Fonts.Files]
+
+
+[Uniprocessor.Kernel.Files]
+NTKRNLPA.EXE
+NTOSKRNL.EXE
+WIN32K.SYS,UNIPROC\WIN32K.SYS
+KERNEL32.DLL,UNIPROC\KERNEL32.DLL
+
+
+[UniProc.DriverCab.Files]
+kernel32.dll,UNIPROC\KERNEL32.DLL,,8
+
+[UniProc.Cache.Files]
+kernel32.dll,UNIPROC\KERNEL32.DLL,,8
+
+[Multiprocessor.Kernel.Files]
+NTKRNLPA.EXE,NTKRPAMP.EXE
+NTOSKRNL.EXE,NTKRNLMP.EXE
+WIN32K.SYS
+kernel32.dll
+
+[MultiProc.DriverCab.Files]
+kernel32.dll,,,8
+
+[MultiProc.Cache.Files]
+kernel32.dll,,,8
+
+[SMTP.Files]
+
+
+[Netmon.Files]
+
+
+[Netmon.Parser.Files]
+
+
+[IIS.Files]
+
+
+[MustReplace.IIS.Files]
+
+
+[FPNW.Files]
+
+
+[HTR.Files]
+
+
+[Mts.Files]
+
+
+[IE.Files]
+
+
+[ResKit.Files]
+
+
+[Hyper.Files]
+
+
+[Eudc.Files]
+
+
+[Export.Files]
+
+
+[Cluster.Files]
+
+
+[SupportTools.Files]
+
+
+[Triedit.Files]
+
+
+[RpcProxy.Files]
+
+
+[RIS.Reminst.Files]
+
+
+[RIS.Admin.Files]
+
+
+[RIS.OSChooser.Files]
+
+
+[OLEDB.Files]
+
+
+[IISAdmin.Files]
+
+
+[DataCenter.IIS.Inf.Files]
+
+
+[DataCenter.Inf.Files]
+
+
+[DataCenter.Cache.Files]
+
+
+[DataCenter.Templates.Files]
+
+
+[WindowsPowered.IIS.Inf.Files]
+
+
+[WindowsPowered.Inf.Files]
+
+
+[WindowsPowered.Cache.Files]
+
+
+[WindowsPowered.Templates.Files]
+
+
+[Advanced.IIS.Inf.Files]
+
+
+[Advanced.Inf.Files]
+
+
+[Advanced.Cache.Files]
+
+
+[Advanced.Templates.Files]
+
+
+[Server.IIS.Inf.Files]
+
+
+[Server.Inf.Files]
+
+
+[Server.Cache.Files]
+
+
+[Server.Templates.Files]
+
+
+[Professional.IIS.Inf.Files]
+
+
+[Professional.Inf.Files]
+
+
+[Professional.Cache.Files]
+
+
+[Professional.Templates.Files]
+
+
+[DataCenter.Drivers.Files]
+
+
+[WindowsPowered.Drivers.Files]
+
+
+[Advanced.Drivers.Files]
+
+
+[Server.Drivers.Files]
+
+
+[Professional.Drivers.Files]
+
+
+[WBEM.FILES]
+
+
+[Certsrv.Files]
+
+
+[Control.Files]
+
+
+[Control.x86.Files]
+
+
+[Control.alpha.Files]
+
+
+[ConnWiz.Files]
+
+
+[IE6SP1.Files.Conditional]
+
+
+[IE6SP1.Files]
+
+
+[IE501SP4.Files.Conditional]
+
+
+[IE501SP4.Files]
+
+
+[IE501.System32.Files]
+
+
+[IE501.Cache.Files]
+
+
+[IE6SP1.System32.Files]
+
+
+[IE6SP1.Cache.Files]
+
+
+[Prereq.CheckRegistry.Section]
+
+
+[Prerequisite.Uninstall]
+
+
+[Prereq.Uninstall.CheckRegistry.Section]
+
+
+[Prereq.Uninstall.CheckKBLast]
+
+
+[Prereq.Uninstall.CheckLastMasterFlags]
+
+
+[System32.Delfiles]
+
+
+[Drivercab.Delfiles]
+
+
+[ServicePackDeleteFiles]
+
+
+[AppPatch.Files]
+
+
+[CopyAlways.AppPatch.Files]
+
+
+[CopyAlways.Certsrv.Files]
+
+
+[AppPatch.Help.Files]
+
+
+[Com.Files]
+
+
+[WebPrinters.Files]
+
+
+[Web.Files]
+
+
+[WebFolders.Files]
+
+
+[PhoneBook.Files]
+
+
+[NetMeeting.Files]
+
+
+[System32.56bit.Files]
+
+
+[System32.128bit.Files]
+schannel.dll
+
+[Drivers.56bit.Files]
+
+
+[Drivers.128bit.Files]
+
+
+[Cache.56bit.Files]
+
+
+[Cache.128bit.Files]
+schannel.dll
+
+[IMEJP.Files]
+
+
+[IMEJPApplet.Files]
+
+
+[IISASPHelp.Files]
+
+
+[IISDocSearch.Files]
+
+
+[IISHTR.Files]
+
+
+[CopyAlways.IISNewHTRFiles]
+
+
+[UpdateDrivers]
+
+
+[ArchiveSpoolerDriverFiles]
+
+
+[ArchiveCatalogFilesOnly]
+
+
+[MSI20Install]
+CopyFiles=MSI20Stage
+
+[MSI20Stage]
+
+[fltmgr.Prerequisite.OrOp.Section]
+
+
+[OverrideVersionNumbers]
+dmdskmgr.dll, 2195.2215.297.3, 2215.2215.297.3
+Msadce.dll, 2.71.0000, 2.71.8130.0
+Msadce.dll, 2.71.0000, 2.71.9001.19
+sqloledb.dll, 2000.00.0000.0, 2000.81.9031.6
+odbc32.dll, 3.520.6200.0, 3.520.8809.0
+odbc32.dll, 3.520.6200.0, 3.520.8721.0
+ODBCCP32.dll, 3.520.6200.0, 3.520.8809.0
+ODBCCP32.dll, 3.520.6200.0, 3.520.8721.0
+
+[SourceDisksNames]
+1=%ServicePackSourceFiles%
+
+[SourceDisksFiles]
+GDI32.DLL=1
+mf3216.dll=1
+files\msado15.dll=1
+files\msadomd.dll=1
+files\msADOX.dll=1
+files\msjro.dll=1
+files\ODBC32.dll=1
+t2embed.dll=1
+iccvid.dll=1
+spoolsv.exe=1
+oleaut32.dll=1
+thumbvw.dll=1
+faxcover.exe=1
+mfc42.dll=1
+mfc42u.dll=1
+srv.sys=1
+WINS.EXE=1
+WINSEVNT.DLL=1
+sp3res.dll=1
+mup.sys=1
+mrxsmb.sys=1
+rdbss.sys=1
+mciseq.dll=1
+winmm.dll=1
+dbghelp.dll=1
+imagehlp.dll=1
+NTKRNLMP.EXE=1
+ntkrnlpa.exe=1
+NTKRPAMP.EXE=1
+ntoskrnl.exe=1
+UNIPROC\WIN32K.SYS=1
+win32k.sys=1
+browser.dll=1
+NETAPI32.DLL=1
+msxml3.dll=1
+rdpwd.sys=1
+synceng.dll=1
+wintrust.dll=1
+kernel32.dll=1
+UNIPROC\KERNEL32.DLL=1
+mpr.dll=1
+ole32.dll=1
+scrrun.dll=1
+usp10.dll=1
+schannel.dll=1
+shell32.dll=1
+jscript.dll=1
+vbscript.dll=1
+V8DME\mp4sds32.ax=1
+V8DME\mp4sdmod.dll=1
+WM10\mp4sdmod.dll=1
+WM41\mpg4ds32.ax=1
+WM71\mpg4ds32.ax=1
+WM9\mp4sdmod.dll=1
+WM9L\mp4sdmod.dll=1
+WM9L\wmvdmod.dll=1
+WM64\l3codecx.ax=1
+WM64\wmv9vcm.dll=1
+RTMQFE\BROWSEUI.DLL=1
+RTMQFE\CDFVIEW.DLL=1
+RTMQFE\DANIM.DLL=1
+RTMQFE\DXTMSFT.DLL=1
+RTMQFE\DXTRANS.DLL=1
+RTMQFE\IEPEERS.DLL=1
+RTMQFE\INSENG.DLL=1
+RTMQFE\JSPROXY.DLL=1
+RTMQFE\MSHTML.DLL=1
+RTMQFE\MSHTMLED.DLL=1
+RTMQFE\MSRATING.DLL=1
+RTMQFE\MSTIME.DLL=1
+RTMQFE\PNGFILT.DLL=1
+RTMQFE\SHDOCVW.DLL=1
+RTMQFE\SHLWAPI.DLL=1
+RTMQFE\TDC.OCX=1
+RTMQFE\URLMON.DLL=1
+RTMQFE\VGX.DLL=1
+RTMQFE\WININET.DLL=1
+DX9\qedit.dll=1
+DX9\quartz.dll=1
+DX9\mpg2splt.ax=1
+
+[DeleteFilesInUninstallSections]
+"SystemRoot\System32.restore.files","odbc32.dll"
+"SystemRoot\System32.restore.files","odbccp32.dll"
+"SystemRoot\System32.restore.files","odbcbcp.dll"
+"SystemRoot\System32.restore.files","sqlsrv32.dll"
+"SystemRoot\System32\dllcache.restore.files","odbc32.dll"
+"SystemRoot\System32\dllcache.restore.files","odbccp32.dll"
+
+[UninstallSections]
+GlobalRegistryChanges, GlobalRegistryChanges.Uninstall
+Del.Reg, Del.Reg.Uninstall
+ServicesToStopAndStart, ServicesToStopAndStart.Uninstall
+
+[GlobalRegistryChanges.Uninstall]
+DelReg=Del.Reg
+
+[Del.Reg.Uninstall]
+
+[Strings]
+CMAKRegkey=SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Cmak.exe
+ProxyRegKey=SYSTEM\CurrentControlSet\Services\WSPSrv\Parameters
+IeRegKey=Software\Microsoft\Windows\CurrentVersion\App Paths\iexplore.exe
+ResKitPathKey=SOFTWARE\Microsoft\ResKit\NameSpace\Windows 2000 Resource Kit
+HyperRegKey=SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\hypertrm.exe
+EudcRegKey=Software\Microsoft\Windows\CurrentVersion\App Paths\eudcedit.exe
+AdmtRegKey=SOFTWARE\Microsoft\ADMT
+TsclientRegKey=SOFTWARE\Classes\conman.exe\DefaultIcon
+BUILDTIMESTAMP=20230521.202126
+HelpLink = "http://support.microsoft.com"
+URLInfoAbout = http://support.microsoft.com
+LangTypeValue=17
+WSEDIR="1041"
+TSCLIENTDIR="Terminal Services Client"
+PORTUGAL="ポルトガル"
+FALKLANDS="フォークランド諸島"
+USER_NAME="ユーザー名:"
+PASSWORD="パスワード:"
+DOMAIN="ドメイン:"
+CREDENTIALS="ダイナミック DNS 登録の資格情報:"
+ServicePackSourceFiles="Windows 2000 ホットフィックス ソース ファイル"
+SP_SHORT_TITLE ="MKCROLLUP2000"
+SP_TITLE="Windows 2000 用ミルクちゃんロールアップ アップデート"
+SERVICE_PACK_NUMBER     = 5 
+SP_TITLE_NEW="Windows 2000 用ミルクちゃんロールアップ アップデート"
+LOC_UPDATE="更新"
+LOC_CRITICALUPDATE="重要な更新"
+LOC_HOTFIX="ホットフィックス"
+LOC_SECURITY_UPDATE="セキュリティ更新"
+PARENT_DISPLAY_NAME="Windows 2000 - ソフトウェアの更新"
+PreReq_MSI_31="このホットフィックスには、MSI 3.1 が必要です"
+PEAP-DispName="保護された EAP (PEAP)"
+EAPMSCHAP-DispName="セキュリティで保護されたパスワード (EAP-MSCHAP v2)"
+PreReq_MSI_2="この修正は MSI 2.0 にのみインストールされます"
+MainCancelIntroString="要求を報告していただき、ありがとうございます。[レポートの送信] ボタンをクリックすると、インストール エラーの原因に関するデータが Microsoft に送信されます"
+MainCancelDetailsLink="インストール レポートの内容を参照します。"
+MainCancelReportBtn="レポートの送信(&S)"
+DetailsCancelHeader="情報の送信"
+DetailsCancelBody="送信していただいたレポートは、ユーザー エクスペリエンスの向上に役立ちます。収集したデータを統計的に処理し、インストール エラーの原因を究明します。この情報を役立て、更新の適用時に発生するインストール エラーの回数が少なくなるようにします。"
+STR_PROGRAMF_DIR    = "Program Files"
+STR_COMMON_DIR      = "Common Files"
+STR_MAILNEWS_DIR    = "Outlook Express"
+STR_SHARED_DIR      = "Microsoft Shared"
+STR_MSINFO_DIR      = "MSInfo"
+STR_VGX_DIR	        = "VGX"
+SourceDiskName      = "Internet Explorer 6"
+STR_SYSTEM_DIR      = "Common Files\System"
+PATH_DRAGPROTOCOLS="Software\Microsoft\Windows\CurrentVersion\Internet Settings\AllowedDragProtocols"
+PATH_ALLOWEDIMGEXTS="Software\Microsoft\Windows\CurrentVersion\Internet Settings\AllowedDragImageExts"    
+PATH_TEMPOL_HI="Software\Microsoft\Windows\CurrentVersion\Internet Settings\TemplatePolicies\High"
+PATH_ZONES_LOCAL="Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0"
+PATH_ZONES_INTRANET="Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1"
+PATH_ZONES_TRUSTED="Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2"
+PATH_ZONES_INTERNET="Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
+PATH_ZONES_UNTRUSTED="Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
+CLSID_Plugin                        = "{06DD38D3-D187-11CF-A80D-00C04FD74AD8}"
+CLSID_IELabel                       = "{99B42120-6EC7-11CF-A6C7-00AA00A47DD2}"
+CLSID_TSActiveX1                    = "{1fb464c8-09bb-4017-a2f5-eb742f04392f}"
+CLSID_TSActiveX_WinXPGold           = "{791fa017-2de3-492e-acc5-53c67a2b94d0}" 
+CLSID_TSActiveX_Server              = "{931a8c29-3ea9-494d-91e7-22e9a9247687}" 
+CLSID_Chat3                         = "{81361155-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3HistoryCtl               = "{81361143-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3MemberCtl                = "{81361146-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3InputCtl                 = "{81361149-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3Items                    = "{8136114B-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3ChannelObject            = "{8136114D-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3ChannelsCollection       = "{8136114F-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat3MsCCPr                   = "{81361152-FAF9-11D3-B0D3-00C04F612FF1}"
+CLSID_Chat4                         = "{E87A6788-1D0F-4444-8898-1D25829B6755}"
+CLSID_Chat4_2                       = "{9088E688-063A-4806-A3DB-6522712FC061}"
+CLSID_Chat41                        = "{29c13b62-b9f7-4cd3-8cef-0a58a1a99441}"
+CLSID_MSFlUpl                       = "{886E7BF0-C867-11CF-B1AE-00AA00A3F2C3}"
+CLSID_LMReader1                     = "{183C259A-0480-11d1-87EA-00C04FC29D46}"
+CLSID_MSNInstallEnginer1            = "{1141B704-053E-11D0-9DF0-00C04FD7BF41}"
+CLSID_DirectXFilesViewer            = "{970C7E08-05A7-11D0-89AA-00A0C9054129}"
+CLSID_HtmlHelp                      = "{ADB880A6-D8FF-11CF-9377-00AA003B7A11}"
+REG_COMPAT			        = 0x00010001
+Version ="6,0,2800,2053"
+Guid ={fb1a4168-2670-4c0f-bb02-54edfe477e6e}
+IeRegKey ="Software\Microsoft\Windows\CurrentVersion\App Paths\iexplore.exe"
+REGDW	= 0x00010001
+CLSID_ShellWindows      = "{9BA05972-F6A8-11CF-A442-00A0C90A8F39}"
+DESC_WinListShellProc   = "Window List in Shell Process"
+IPS = "InProcServer32"
+RES  = 0x00020000
+LCID = 0411
+W32ID = 0x11
+DispStrKB           = "この修正プログラムには KB$(cmi.prereqKB) が必要です。http://support.microsoft.com/?kbid=$(cmi.prereqKB) からダウンロードしてからこの修正プログラムをインストールしてください。"
+DispStrMCEUR		= "Windows Media Center Edition 2005 用ロールアップ修正プログラム 2 に問題があります。ソフトウェアの修正プログラムをインストールする前に、この問題を解決しなければなりません。ロールアップ修正プログラム 2 を http://www.microsoft.com/downloads/details.aspx?FamilyID=e5daf37e-e243-4410-bc51-81cf2b56fe6e から取得して、この修正プログラムを再起動してください。"
+DispStrBlkOSProduct	= "このソフトウェアの修正プログラムは、このオペレーティング システムの Windows Media Player のバージョンと互換性がありません。http://support.microsoft.com/?kbid=975558 で正しい修正プログラムを選択してください。"
+DispStrCum             = "この修正プログラムは、Windows Media Player にのみ適用できます。Windows Media Player をインストールしていてもこのメッセージが表示される場合、お使いのバージョンには既にこの修正プログラムが適用されています。"
+DispStrPreReq          = "あなたのコンピュータはそうではありませんこのアップデートの要件の一部を満たしています。"
+DispStrUp              = "システムにインストールされている Windows Media Player のバージョンに、この修正プログラムが既に含まれているため完了できません。"
+
+
+[IEversion]
+    MinVersion ="6,0,2800,1106"
+    MaxVersion ="6,0,2900,0"
+    Dual = 1
+;
+; Timezone packages: localized display strings
+;
+;+++(Time Zone Core)
+Argentina_Display="(GMT-03:00) ブエノスアイレス"
+Argentina_Dlt="アルゼンチン夏時間"
+Argentina_Std="アルゼンチン標準時"
+Armenian_Dlt="アルメニア夏時間"
+Armenian_Std="アルメニア標準時"
+Azerbaijan_Display="(GMT+04:00) バク"
+Azerbaijan_Dlt="アゼルバイジャン夏時間"
+Azerbaijan_Std="アゼルバイジャン標準時"
+Bahia_Display="(GMT-03:00) サルバドル"
+Bahia_Dlt="バイア夏時間"
+Bahia_Std="バイア標準時"
+Bangladesh_Display="(GMT+06:00) ダッカ"
+Bangladesh_Dlt="バングラデシュ夏時間"
+Bangladesh_Std="バングラデシュ標準時"
+Caucasus_Common_Display="(GMT+04:00) コーカサス標準時"
+Caucasus_Display="(GMT+04:00) エレバン"
+Central_Brazilian_Display="(GMT-04:00) クイアバ"
+Central_Brazilian_Dlt="中央ブラジル夏時間"
+Central_Brazilian_Std="中央ブラジル標準時"
+Central_M_Display="(GMT-06:00) グアダラハラ、メキシコシティ、モンテレー  - 新"
+Central_M_Dlt="中部夏時間 (メキシコ)"
+Central_M_Std="中部標準時 (メキシコ)"
+Central_Pacific_Display="(GMT+11:00) ソロモン諸島、ニューカレドニア"
+CentralAsia_Display="(GMT+06:00) アスタナ"
+E_Europe_Display="(GMT+02:00) 東ヨーロッパ"
+Ekaterinburg_Display="(GMT+06:00) エカテリンバーグ"
+Fiji_Display="(GMT+12:00) フィジー"
+Georgian_Display="(GMT+04:00) トビリシ"
+Georgian_Dlt="グルジア夏時間"
+Georgian_Std="グルジア標準時"
+Greenwich_Display="(GMT) モンロビア、レイキャビク"
+GTB_Display="(GMT+02:00) アテネ、ブカレスト"
+Jordan_Display="(GMT+02:00) アンマン"
+Jordan_Dlt="ヨルダン夏時間"
+Jordan_Std="ヨルダン標準時"
+Kaliningrad_Display="(GMT+03:00) カリーニングラード、ミンスク"
+Kaliningrad_Dlt="カリーニングラード夏時間"
+Kaliningrad_Std="カリーニングラード標準時"
+Kamchatka_Display="(GMT+12:00) ペトロパブロフスク-カムチャツキー - 廃止"
+Kamchatka_Dlt="カムチャツカ夏時間"
+Kamchatka_Std="カムチャツカ標準時"
+Libya_Display="(GMT+02:00) トリポリ"
+Libya_Dlt="リビア夏時間"
+Libya_Std="リビア標準時"
+Magadan_Display="(GMT+12:00) マガダン"
+Magadan_Dlt="マガダン夏時間"
+Magadan_Std="マガダン標準時"
+Mauritius_Display="(GMT+04:00) ポートルイス"
+Mauritius_Dlt="モーリシャス夏時間"
+Mauritius_Std="モーリシャス標準時"
+Mexico_2_Old_Display="(GMT-07:00) チワワ、ラパス、マサトラン - 旧"
+Mexico_Old_Display="(GMT-06:00) グアダラハラ、メキシコシティ、モンテレー - 旧"
+MidAtlantic_Display="(GMT-02:00) 中央大西洋 - 廃止"
+Middle_East_Display="(GMT+02:00) ベイルート"
+Middle_East_Dlt="中東夏時間"
+Middle_East_Std="中東標準時"
+Montevideo_Display="(GMT-03:00) モンテビデオ"
+Montevideo_Dlt="モンテビデオ夏時間"
+Montevideo_Std="モンテビデオ標準時"
+Morocco_Display="(GMT) カサブランカ"
+Morocco_Dlt="モロッコ夏時間"
+Morocco_Std="モロッコ標準時"
+Mountain_M_Display="(GMT-07:00) チワワ、ラパス、マサトラン  - 新"
+Mountain_M_Dlt="山地夏時間 (メキシコ)"
+Mountain_M_Std="山地標準時 (メキシコ)"
+Myanmar_Display="(GMT+06:30) ヤンゴン (ラングーン)"
+Namibia_Display="(GMT+01:00) ウィントフック"
+Namibia_Dlt="ナミビア夏時間"
+Namibia_Std="ナミビア標準時"
+NCentralAsia_Display="(GMT+07:00) ノボシビルスク"
+North_Asia_Display="(GMT+08:00) クラスノヤルスク"
+NorthAsiaEast_Display="(GMT+09:00) イルクーツク"
+NorthPacific_Display="(GMT-11:00) ミッドウェー諸島"
+NorthPacific_Dlt="北太平洋夏時間"
+NorthPacific_Std="北太平洋標準時"
+Pacific_Display="(GMT-08:00) 太平洋標準時 (米国およびカナダ)(& )"
+Pacific_M_Display="(GMT-08:00) バハカリフォルニア"
+Pacific_M_Dlt="太平洋夏時間 (メキシコ)"
+Pacific_M_Std="太平洋標準時 (メキシコ)"
+Pakistan_Display="(GMT+05:00) イスラマバード、カラチ"
+Pakistan_Dlt="パキスタン夏時間"
+Pakistan_Std="パキスタン標準時"
+Paraguay_Display="(GMT-04:00) アスンシオン"
+Paraguay_Dlt="パラグアイ夏時間"
+Paraguay_Std="パラグアイ標準時"
+Russian_Display="(GMT+04:00) モスクワ、サンクトペテルブルク、ボルゴグラード"
+SA_Eastern_Display="(GMT-03:00) カイエンヌ、フォルタレザ "
+SA_Pacific_Display="(GMT-05:00) ボゴタ、リマ、キト、リオ ブランコ"
+SA_Western_Display="(GMT-04:00) ジョージタウン、ラパス、マナウス、サンフアン"
+Samoa_Display="(GMT+13:00) サモア"
+Sri_Lanka_Display="(GMT+05:30) スリジャヤワルダナプラコッテ"
+Syria_Display="(GMT+02:00) ダマスカス"
+Syria_Dlt="シリア夏時間"
+Syria_Std="シリア標準時"
+Turkey_Display="(GMT+02:00) イスタンブール"
+Turkey_Dlt="トルコ夏時間"
+Turkey_Std="トルコ標準時"
+Ulaanbaatar_Display="(GMT+08:00) ウランバートル"
+Ulaanbaatar_Dlt="ウランバートル夏時間"
+Ulaanbaatar_Std="ウランバートル標準時"
+UTC_Display="(GMT) 協定世界時"
+UTC_Dlt="協定世界時"
+UTC_Std="協定世界時"
+UTCm01_Display="(GMT-01:00) 協定世界時-01"
+UTCm01_Dlt="UTC-01"
+UTCm01_Std="UTC-01"
+UTCm02_Display="(GMT-02:00) 協定世界時-02"
+UTCm02_Dlt="UTC-02"
+UTCm02_Std="UTC-02"
+UTCm03_Display="(GMT-03:00) 協定世界時-03"
+UTCm03_Dlt="UTC-03"
+UTCm03_Std="UTC-03"
+UTCm04_Display="(GMT-04:00) 協定世界時-04"
+UTCm04_Dlt="UTC-04"
+UTCm04_Std="UTC-04"
+UTCm05_Display="(GMT-05:00) 協定世界時-05"
+UTCm05_Dlt="UTC-05"
+UTCm05_Std="UTC-05"
+UTCm06_Display="(GMT-06:00) 協定世界時-06"
+UTCm06_Dlt="UTC-06"
+UTCm06_Std="UTC-06"
+UTCm07_Display="(GMT-07:00) 協定世界時-07"
+UTCm07_Dlt="UTC-07"
+UTCm07_Std="UTC-07"
+UTCm08_Display="(GMT-08:00) 協定世界時-08"
+UTCm08_Dlt="UTC-08"
+UTCm08_Std="UTC-08"
+UTCm09_Display="(GMT-09:00) 協定世界時-09"
+UTCm09_Dlt="UTC-09"
+UTCm09_Std="UTC-09"
+UTCm10_Display="(GMT-10:00) 協定世界時-10"
+UTCm10_Dlt="UTC-10"
+UTCm10_Std="UTC-10"
+UTCm11_Display="(GMT-11:00) 協定世界時-11"
+UTCm11_Dlt="UTC-11"
+UTCm11_Std="UTC-11"
+UTCm12_Display="(GMT-12:00) 協定世界時-12"
+UTCm12_Dlt="UTC-12"
+UTCm12_Std="UTC-12"
+UTCp01_Display="(GMT+01:00) 協定世界時+01"
+UTCp01_Dlt="UTC+01"
+UTCp01_Std="UTC+01"
+UTCp02_Display="(GMT+02:00) 協定世界時+02"
+UTCp02_Dlt="UTC+02"
+UTCp02_Std="UTC+02"
+UTCp03_Display="(GMT+03:00) 協定世界時+03"
+UTCp03_Dlt="UTC+03"
+UTCp03_Std="UTC+03"
+UTCp04_Display="(GMT+04:00) 協定世界時+04"
+UTCp04_Dlt="UTC+04"
+UTCp04_Std="UTC+04"
+UTCp05_Display="(GMT+05:00) 協定世界時+05"
+UTCp05_Dlt="UTC+05"
+UTCp05_Std="UTC+05"
+UTCp06_Display="(GMT+06:00) 協定世界時+06"
+UTCp06_Dlt="UTC+06"
+UTCp06_Std="UTC+06"
+UTCp07_Display="(GMT+07:00) 協定世界時+07"
+UTCp07_Dlt="UTC+07"
+UTCp07_Std="UTC+07"
+UTCp08_Display="(GMT+08:00) 協定世界時+08"
+UTCp08_Dlt="UTC+08"
+UTCp08_Std="UTC+08"
+UTCp09_Display="(GMT+09:00) 協定世界時+09"
+UTCp09_Dlt="UTC+09"
+UTCp09_Std="UTC+09"
+UTCp10_Display="(GMT+10:00) 協定世界時+10"
+UTCp10_Dlt="UTC+10"
+UTCp10_Std="UTC+10"
+UTCp11_Display="(GMT+11:00) 協定世界時+11"
+UTCp11_Dlt="UTC+11"
+UTCp11_Std="UTC+11"
+UTCp12_Display="(GMT+12:00) 協定世界時+12"
+UTCp12_Dlt="UTC+12"
+UTCp12_Std="UTC+12"
+UTCp13_Display="(GMT+13:00) 協定世界時+13"
+UTCp13_Dlt="UTC+13"
+UTCp13_Std="UTC+13"
+Venezuela_Display="(GMT-04:30) カラカス"
+Venezuela_Dlt="ベネズエラ夏時間"
+Venezuela_Std="ベネズエラ標準時"
+Vladivostok_Display="(GMT+11:00) ウラジオストク"
+West_Asia_Display="(GMT+05:00) アシハバード、タシケント"
+Yakutsk_Display="(GMT+10:00) ヤクーツク"
+;---(Time Zone Core)
+;
+;Kodak file path in win2k
+;
+KODAK_DIR="Windows NT\Accessories\ImageVue"
+;
+;MSRC 6603: Wordpad converters location
+;
+ACCESSOR="Windows NT\Accessories"
+;MSRC: MSTSC Case
+PROGRAMF="Program Files"
+NO_RDP5="RDP 5.0 がシステムに見つからないため、アップデートをインストールできません。"
+
+[Prereq.CheckReg]
+
+
+[PreReq.IsFilePresentAndCorrectVersion]
+
+
+[Configuration]
+InstallationType        = Hotfix
+InstallLogFileName      = %SP_SHORT_TITLE%.log
+UnInstallLogFileName    = %SP_SHORT_TITLE%Uninst.log
+UnInstallDirName        = $NtUninstall%SP_SHORT_TITLE%$
+EventLogKeyName         = NtServicePack
+EventLogDllName         = spmsg.dll
+WaitTimeForServiceStop  = -1
+AppFileinUseDetect      = 3
+ServiceFileinUseDetect  = 1
+
+[Kodakdlls.AndOp.Section]
+
+
+[oieng.OrOp.section]
+
+
+[tifjpeg.AndOp.section]
+
+
+[ScriptVer.OrOp.Section]
+
+
+[ScriptJScript56.SingleOp.section]
+
+
+[ScriptJScript51.AndOp.section]
+
+
+[Windows.NT.Accessories.Files]
+
+
+[ISA2000.Reg.Condition]
+
+
+[ISA2000.Reg.Install]
+
+
+[ISA2000.AddReg]
+
+
+[Msrdp.edit.Dirid]
+
+
+[MsRdp.Dirid]
+
+
+[Msrdp.edit.install.section]
+
+
+[MsRdp.install.section]
+
+
+[MsRdp.copy.files]
+
+
+[Msrdp.edit.copy.files]
+
+
+[MsRdp.Inetpub.copy.files]
+
+
+[2k3Mstsc.Install.Files]
+
+
+[2k3Mstscax.Install.Files]
+
+
+[scriptscrrun.andop.section]
+LessOp=CheckFileVer,System32.Files,scrrun.dll,"<",5.8.0.0
+GreatOrEqualOp=CheckFileVer,System32.Files,scrrun.dll,">=",5.7.0.0
+
+[scriptjscript.andop.section]
+LessOp=CheckFileVer,System32.Files,jscript.dll,"<",5.8.0.0
+GreatOrEqualOp=CheckFileVer,System32.Files,jscript.dll,">=",5.7.0.0
+
+[scriptvbscript.andop.section]
+LessOp=CheckFileVer,System32.Files,vbscript.dll,"<",5.8.0.0
+GreatOrEqualOp=CheckFileVer,System32.Files,vbscript.dll,">=",5.7.0.0
+
+[Test.OrOp.Section]
+SingleOp = Test.SingleOp.Section
+OrOp = Test.OrOp.Section 
+
+[Test.SingleOp.Section]
+PresentOp = CheckFilever, Copy.System32.WM41, mpg4ds32.ax
+
+[Test.OrOp.Section]
+PresentOp = CheckFilever, Copy.System32.V8DME, mp4sds32.ax
+PresentOp = CheckFilever, Copy.System32.V8DME, mp4sdmod.dll
+
+[ProductInstall.ExtendedConditional]
+ConditionInstall=Condition.WM41.Section
+ConditionInstall=Condition.WM71.Section
+ConditionInstall=Condition.V8DME.mp4sds32.Section
+ConditionInstall=Condition.V8DME.mp4sdmod.Section
+ConditionInstall=Condition.WM9.Section
+ConditionInstall=Condition.WM9L.Section
+ConditionInstall=Condition.WM10.Section
+
+[ExtendedConditional.Declare]
+DeclareSection=Declare.Copy.System32.WM41
+DeclareSection=Declare.Copy.DllCache.WM41
+DeclareSection=Declare.Copy.System32.WM71
+DeclareSection=Declare.Copy.DllCache.WM71
+DeclareSection=Declare.Copy.System32.V8DME
+DeclareSection=Declare.Copy.DllCache.V8DME
+DeclareSection=Declare.Copy.System32.WM9
+DeclareSection=Declare.Copy.DllCache.WM9
+DeclareSection=Declare.Copy.System32.WM9L
+DeclareSection=Declare.Copy.DllCache.WM9L
+DeclareSection=Declare.Copy.System32.WM10
+DeclareSection=Declare.Copy.DllCache.WM10
+
+;----WM41 section beings here----
+[Condition.WM41.Section]
+condition=AndOp,Test.Exist.WM41.Section.mpg4ds32
+condition=SingleOp,Test.UpperVersionCheck.WM41.Section.1
+ConditionalOperations=Extended.WM41.Operation
+
+[Test.Exist.WM41.Section.mpg4ds32]
+PresentOp = CheckFilever, Copy.System32.WM41, mpg4ds32.ax
+GreatOrEqualOp = CheckFilever, Copy.System32.WM41, mpg4ds32.ax, >= , 4.1.0.0000
+
+[Test.UpperVersionCheck.WM41.Section.1]
+LessOrEqualOp = CheckFilever, Copy.System32.WM41, mpg4ds32.ax, <= , 4.1.0.9999
+
+[Extended.WM41.Operation]
+FileOperation=Install.Files.WM41
+
+[Declare.Copy.System32.WM41]
+InstallSection=Copy.System32.WM41
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Declare.Copy.DllCache.WM41]
+InstallSection=Copy.DllCache.WM41
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Install.Files.WM41]
+CopyFiles=Copy.System32.WM41
+CopyFiles=Copy.DllCache.WM41
+;----WM41 section ends here----
+
+
+;----WM71 section beings here----
+[Condition.WM71.Section]
+condition=AndOp,Test.Exist.WM71.Section.mpg4ds32
+condition=SingleOp,Test.UpperVersionCheck.WM71.Section.1
+ConditionalOperations=Extended.WM71.Operation
+
+[Test.Exist.WM71.Section.mpg4ds32]
+PresentOp = CheckFilever, Copy.System32.WM71, mpg4ds32.ax
+GreatOrEqualOp = CheckFilever, Copy.System32.WM71, mpg4ds32.ax, >= , 7.1.0.0000
+
+[Test.UpperVersionCheck.WM71.Section.1]
+LessOrEqualOp = CheckFilever, Copy.System32.WM71, mpg4ds32.ax, <= , 7.1.0.9999
+
+[Extended.WM71.Operation]
+FileOperation=Install.Files.WM71
+
+[Declare.Copy.System32.WM71]
+InstallSection=Copy.System32.WM71
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Declare.Copy.DllCache.WM71]
+InstallSection=Copy.DllCache.WM71
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Install.Files.WM71]
+CopyFiles=Copy.System32.WM71
+CopyFiles=Copy.DllCache.WM71
+;----WM71 section ends here----
+
+
+;----V8DME section beings here----
+[Condition.V8DME.mp4sds32.Section]
+condition=SingleOp, Test.V8DME.mp4sds32.Present.Section
+condition=AndOp, Test.V8DME.mp4sds32.Section
+ConditionalOperations=Extended.V8DME.Operation
+
+[Test.V8DME.mp4sds32.Present.Section]
+PresentOp = CheckFilever, Copy.System32.V8DME, mp4sds32.ax
+
+[Test.V8DME.mp4sds32.Section]
+GreatOrEqualOp = CheckFilever, Copy.System32.V8DME, mp4sds32.ax, >= , 8.0.0.000
+LessOrEqualOp = CheckFilever, Copy.System32.V8DME, mp4sds32.ax, <= , 8.0.0.999
+
+[Condition.V8DME.mp4sdmod.Section]
+condition=SingleOp, Test.V8DME.mp4sdmod.Present.Section
+condition=AndOp,Test.V8DME.mp4sdmod.Section
+ConditionalOperations=Extended.V8DME.Operation
+
+[Test.V8DME.mp4sdmod.Present.Section]
+PresentOp = CheckFilever, Copy.System32.V8DME, mp4sdmod.dll
+
+[Test.V8DME.mp4sdmod.Section]
+GreatOrEqualOp = CheckFilever, Copy.System32.V8DME, mp4sdmod.dll, >= , 8.0.0.000
+LessOrEqualOp = CheckFilever, Copy.System32.V8DME, mp4sdmod.dll, <= , 8.0.0.999
+
+[Test.Exist.WM64.Section.l3codecx]
+PresentOp = CheckFilever, Copy.System32.WM64, l3codecx.ax
+GreatOrEqualOp = CheckFilever, Copy.System32.WM64, l3codecx.ax , >= , 1.5.0.00
+Display_String=%DispStrPreReq%
+
+[Test.UpperVersionCheck.WM64.Section.l3codecx]
+LessOrEqualOp = CheckFilever, Copy.System32.WM64, l3codecx.ax, <= , 1.6.0.99
+Display_String=%DispStrUp%
+
+[Extended.V8DME.Operation]
+FileOperation=Install.Files.V8DME
+
+[Declare.Copy.System32.V8DME]
+InstallSection=Copy.System32.V8DME
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Declare.Copy.DllCache.V8DME]
+InstallSection=Copy.DllCache.V8DME
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Install.Files.V8DME]
+CopyFiles=Copy.System32.V8DME
+CopyFiles=Copy.DllCache.V8DME
+;----V8DME section ends here----
+
+;----WM9 section beings here----
+[Condition.WM9.Section]
+condition=AndOp,Test.Exist.WM9.Section.mp4sdmod
+condition=SingleOp,Test.UpperVersionCheck.WM9.Section.1
+ConditionalOperations=Extended.WM9.Operation
+
+[Test.Exist.WM9.Section.mp4sdmod]
+PresentOp = CheckFilever, Copy.System32.WM9, mp4sdmod.dll
+GreatOrEqualOp = CheckFilever, Copy.System32.WM9, mp4sdmod.dll, >= , 9.0.0.0000
+
+[Test.UpperVersionCheck.WM9.Section.1]
+LessOrEqualOp = CheckFilever, Copy.System32.WM9, mp4sdmod.dll, <= , 9.0.0.3286
+
+[Extended.WM9.Operation]
+FileOperation=Install.Files.WM9
+
+[Declare.Copy.System32.WM9]
+InstallSection=Copy.System32.WM9
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Declare.Copy.DllCache.WM9]
+InstallSection=Copy.DllCache.WM9
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Install.Files.WM9]
+CopyFiles=Copy.System32.WM9
+CopyFiles=Copy.DllCache.WM9
+;----WM9 section ends here----
+
+
+;----WM9L section beings here----
+[Condition.WM9L.Section]
+condition=AndOp,Test.Exist.WM9L.Section.mp4sdmod
+condition=SingleOp,Test.UpperVersionCheck.WM9L.Section.1
+ConditionalOperations=Extended.WM9L.Operation
+
+[Test.Exist.WM9L.Section.mp4sdmod]
+PresentOp = CheckFilever, Copy.System32.WM9L, mp4sdmod.dll
+GreatOrEqualOp = CheckFilever, Copy.System32.WM9L, mp4sdmod.dll, >= , 9.0.0.3287
+
+[Test.UpperVersionCheck.WM9L.Section.1]
+LessOrEqualOp = CheckFilever, Copy.System32.WM9L, mp4sdmod.dll, <= , 9.0.0.9999
+
+[Extended.WM9L.Operation]
+FileOperation=Install.Files.WM9L
+
+[Declare.Copy.System32.WM9L]
+InstallSection=Copy.System32.WM9L
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Declare.Copy.DllCache.WM9L]
+InstallSection=Copy.DllCache.WM9L
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Install.Files.WM9L]
+CopyFiles=Copy.System32.WM9L
+CopyFiles=Copy.DllCache.WM9L
+;----WM9L section ends here----
+
+
+;----WM10 section beings here----
+[Condition.WM10.Section]
+condition=AndOp,Test.Exist.WM10.Section.mp4sdmod
+condition=SingleOp,Test.UpperVersionCheck.WM10.Section.1
+ConditionalOperations=Extended.WM10.Operation
+
+[Test.Exist.WM10.Section.mp4sdmod]
+PresentOp = CheckFilever, Copy.System32.WM10, mp4sdmod.dll
+GreatOrEqualOp = CheckFilever, Copy.System32.WM10, mp4sdmod.dll, >= , 10.0.0.0000
+
+[Test.UpperVersionCheck.WM10.Section.1]
+LessOrEqualOp = CheckFilever, Copy.System32.WM10, mp4sdmod.dll, <= , 10.0.0.9999
+
+;[Test.Exist.WM9L.Section.wmvdmod]
+;PresentOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll
+;GreatOrEqualOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll , >= , 9.0.0.3287
+;Display_String=%DispStrPreReq%
+
+;[Test.UpperVersionCheck.WM9L.Section.wmvdmod]
+;LessOrEqualOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll, <= , 10.0.0.4299
+;Display_String=%DispStrUp%
+
+
+[Extended.WM10.Operation]
+FileOperation=Install.Files.WM10
+
+[Declare.Copy.System32.WM10]
+InstallSection=Copy.System32.WM10
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Declare.Copy.DllCache.WM10]
+InstallSection=Copy.DllCache.WM10
+OperationType=CONDITIONAL_FILE
+Flags=SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
+
+[Install.Files.WM10]
+CopyFiles=Copy.System32.WM10
+CopyFiles=Copy.DllCache.WM10
+;----WM10 section ends here----
+
+[Test.Exist.DX9.Section.mpg2splt]
+PresentOp = CheckFilever, Copy.System32.DX9, mpg2splt.ax
+GreatOrEqualOp = CheckFilever, Copy.System32.DX9, mpg2splt.ax , >= , 6.5.1.900
+Display_String=%DispStrPreReq%
+
+[Test.Exist.DX9.Section.quartz]
+PresentOp = CheckFilever, Copy.System32.DX9, quartz.dll
+GreatOrEqualOp = CheckFilever, Copy.System32.DX9, quartz.dll , >= , 6.5.1.900
+Display_String=%DispStrPreReq%
+
+[Test.UpperVersionCheck.DX9.Section.quartzANDmpg2splt]
+LessOrEqualOp = CheckFilever, Copy.System32.DX9, quartz.dll, <= , 6.5.1.999
+LessOrEqualOp = CheckFilever, Copy.System32.DX9, mpg2splt.ax, <= , 6.5.2600.9999
+Display_String=%DispStrUp%
+
+[Copy.dllcache.V8DME]
+mp4sds32.ax,V8DME\mp4sds32.ax,,0x20
+mp4sdmod.dll,V8DME\mp4sdmod.dll,,0x20
+
+[Copy.system32.V8DME]
+mp4sds32.ax,V8DME\mp4sds32.ax,,0x20
+mp4sdmod.dll,V8DME\mp4sdmod.dll,,0x20
+
+[Copy.dllcache.WM10]
+mp4sdmod.dll,WM10\mp4sdmod.dll,,0x20
+
+[Copy.system32.WM10]
+mp4sdmod.dll,WM10\mp4sdmod.dll,,0x20
+
+[Copy.dllcache.WM41]
+mpg4ds32.ax,WM41\mpg4ds32.ax,,0x20
+
+[Copy.system32.WM41]
+mpg4ds32.ax,WM41\mpg4ds32.ax,,0x20
+
+[Copy.dllcache.WM71]
+mpg4ds32.ax,WM71\mpg4ds32.ax,,0x20
+
+[Copy.system32.WM71]
+mpg4ds32.ax,WM71\mpg4ds32.ax,,0x20
+
+[Copy.dllcache.WM9]
+mp4sdmod.dll,WM9\mp4sdmod.dll,,0x20
+
+[Copy.system32.WM9]
+mp4sdmod.dll,WM9\mp4sdmod.dll,,0x20
+
+[Copy.dllcache.WM9L]
+mp4sdmod.dll,WM9L\mp4sdmod.dll,,0x20
+wmvdmod.dll,WM9L\wmvdmod.dll,,0x20
+
+[Copy.system32.WM9L]
+mp4sdmod.dll,WM9L\mp4sdmod.dll,,0x20
+wmvdmod.dll,WM9L\wmvdmod.dll,,0x20
+
+
+[Copy.dllcache.WM64]
+l3codecx.ax,WM64\l3codecx.ax,,0x20
+wmv9vcm.dll,WM64\wmv9vcm.dll,,0x20
+
+[Copy.system32.WM64]
+l3codecx.ax,WM64\l3codecx.ax,,0x20
+wmv9vcm.dll,WM64\wmv9vcm.dll,,0x20
+
+[Copy.dllcache.DX9]
+qedit.dll,DX9\qedit.dll,,0x20
+quartz.dll,DX9\quartz.dll,,0x20
+mpg2splt.ax,DX9\mpg2splt.ax,,0x20
+
+[Copy.system32.DX9]
+qedit.dll,DX9\qedit.dll,,0x20
+quartz.dll,DX9\quartz.dll,,0x20
+mpg2splt.ax,DX9\mpg2splt.ax,,0x20
+
+[WMSEMaxVersion]
+Test.UpperVersionCheck.DX7.Section = "6.1.9.999"
+Test.UpperVersionCheck.DX8.Section = "6.3.1.999"
+Test.UpperVersionCheck.DX9.Section = "6.5.1.999"
+Test.UpperVersionCheck.WM41.Section = "4.1.0.9999"
+Test.UpperversionCHeck.WM71.Section = "7.10.0.9999"
+Test.UpperVersionCheck.WM8.Section = "8.0.0.9999"
+Test.UpperVersionCheck.WMS9.Section = "9.0.0.9999"
+Test.UpperversionCHeck.WM9.Section = "9.0.0.3286"
+Test.UpperVersionCheck.WM9SP3.Section = "9.0.0.9999"
+Test.UpperVersionCheck.WM9L.Section = "9.0.0.4499"
+Test.UpperVersionCheck.WM10.Section = "10.0.0.3801"
+Test.UpperVersionCheck.WM10L.Section = "10.0.0.4299"
+Test.UpperVersionCheck.MCEUR2.Section = "10.0.0.4999"
+Test.UpperVersionCheck.WM11.Section = "11.0.5721.9999"
