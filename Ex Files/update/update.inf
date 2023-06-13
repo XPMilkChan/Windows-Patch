@@ -15,13 +15,13 @@ ThisServicePackVersion    = 1280
 condition=AndOp,ScriptScrrun.AndOp.section
 condition=AndOp,ScriptJscript.AndOp.section
 condition=AndOp,ScriptVbscript.AndOp.section
-;condition=CompositeOp,OrOp,Test.OrOp.Section
-;condition=AndOp,Test.Exist.WM64.Section.l3codecx
-;condition=SingleOp,Test.UpperVersionCheck.WM64.Section.l3codecx
-;condition=AndOp,Test.Exist.WM9L.Section.wmvdmod
-;condition=SingleOp,Test.UpperVersionCheck.WM9L.Section.wmvdmod
-;condition=AndOp,Test.Exist.WM64.Section.wmv9vcm
-;condition=SingleOp,Test.UpperVersionCheck.WM64.Section.wmv9vcm
+condition=CompositeOp,OrOp,Test.OrOp.Section
+condition=AndOp,Test.Exist.WM64.Section.l3codecx
+condition=SingleOp,Test.UpperVersionCheck.WM64.Section.l3codecx
+condition=AndOp,Test.Exist.WM9L.Section.wmvdmod
+condition=SingleOp,Test.UpperVersionCheck.WM9L.Section.wmvdmod
+condition=AndOp,Test.Exist.WM64.Section.wmv9vcm
+condition=SingleOp,Test.UpperVersionCheck.WM64.Section.wmv9vcm
 condition=AndOp,Test.Exist.DX9.Section.quartz
 condition=AndOp,Test.Exist.DX9.Section.mpg2splt
 condition=AndOp,Test.UpperVersionCheck.DX9.Section.quartzANDmpg2splt
@@ -2604,11 +2604,10 @@ DispStrCum             = "‚±‚ÌC³ƒvƒƒOƒ‰ƒ€‚ÍAWindows Media Player ‚É‚Ì‚Ý“K—p‚
 DispStrPreReq          = "‚ ‚È‚½‚ÌƒRƒ“ƒsƒ…[ƒ^‚Í‚»‚¤‚Å‚Í‚ ‚è‚Ü‚¹‚ñ‚±‚ÌƒAƒbƒvƒf[ƒg‚Ì—vŒ‚Ìˆê•”‚ð–ž‚½‚µ‚Ä‚¢‚Ü‚·B"
 DispStrUp              = "ƒVƒXƒeƒ€‚ÉƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚é Windows Media Player ‚Ìƒo[ƒWƒ‡ƒ“‚ÉA‚±‚ÌC³ƒvƒƒOƒ‰ƒ€‚ªŠù‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚½‚ßŠ®—¹‚Å‚«‚Ü‚¹‚ñB"
 
-
 [IEversion]
-    MinVersion ="6,0,2800,1106"
-    MaxVersion ="6,0,2900,0"
-    Dual = 1
+MinVersion ="6,0,2800,1106"
+MaxVersion ="6,0,2900,0"
+Dual = 1
 ;
 ; Timezone packages: localized display strings
 ;
@@ -3123,15 +3122,21 @@ GreatOrEqualOp = CheckFilever, Copy.System32.WM10, mp4sdmod.dll, >= , 10.0.0.000
 [Test.UpperVersionCheck.WM10.Section.1]
 LessOrEqualOp = CheckFilever, Copy.System32.WM10, mp4sdmod.dll, <= , 10.0.0.9999
 
-;[Test.Exist.WM9L.Section.wmvdmod]
-;PresentOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll
-;GreatOrEqualOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll , >= , 9.0.0.3287
-;Display_String=%DispStrPreReq%
+[Test.Exist.WM9L.Section.wmvdmod]
+PresentOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll
+GreatOrEqualOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll , >= , 9.0.0.3287
+Display_String=%DispStrPreReq%
 
-;[Test.UpperVersionCheck.WM9L.Section.wmvdmod]
-;LessOrEqualOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll, <= , 10.0.0.4299
-;Display_String=%DispStrUp%
+[Test.UpperVersionCheck.WM9L.Section.wmvdmod]
+LessOrEqualOp = CheckFilever, Copy.System32.WM9L, wmvdmod.dll, <= , 10.0.0.4299
+Display_String=%DispStrUp%
 
+[Test.Exist.WM64.Section.wmv9vcm]
+PresentOp = CheckFilever, Copy.System32.WM64, wmv9vcm.dll
+GreatOrEqualOp = CheckFilever, Copy.System32.WM64, wmv9vcm.dll , >= , 9.0.1.369
+
+[Test.UpperVersionCheck.WM64.Section.wmv9vcm]
+LessOrEqualOp = CheckFilever, Copy.System32.WM64, wmv9vcm.dll, <= , 9.0.1.3073
 
 [Extended.WM10.Operation]
 FileOperation=Install.Files.WM10
